@@ -1,0 +1,13 @@
+<resources>
+    <style name="Theme.ProgrammerCalculator" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@color/light_gray</item>
+        <item name="android:statusBarColor">@color/light_gray</item>
+        <item name="android:navigationBarColor">@color/light_gray</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="control_button">@color/gray</item>
+        <item name="value_button">@color/white</item>
+    </style>
+</resources>
