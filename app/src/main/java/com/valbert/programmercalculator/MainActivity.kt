@@ -36,13 +36,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        calculator.base = when(view.tag) {
-            "hex" -> "hex"
-            "dec" -> "dec"
-            "oct" -> "oct"
-            "bin" -> "bin"
-            else -> "Error"
-        }
+        calculator.base = view.tag.toString()
 
         view.setBackgroundResource(R.drawable.base_green)
     }
