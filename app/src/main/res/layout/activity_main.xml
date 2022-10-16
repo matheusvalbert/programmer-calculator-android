@@ -42,6 +42,9 @@
             android:id="@+id/hexButton"
             style="@style/baseButton"
             android:text="@string/hexadecimal"
+            android:background="@drawable/base_green"
+            android:onClick="changeBase"
+            android:tag="hex"
             tools:ignore="RtlSymmetry" />
 
         <TextView
@@ -58,6 +61,8 @@
             android:id="@+id/decButton"
             style="@style/baseButton"
             android:text="@string/decimal"
+            android:onClick="changeBase"
+            android:tag="dec"
             tools:ignore="RtlSymmetry" />
 
         <TextView
@@ -74,6 +79,8 @@
             android:id="@+id/octButton"
             style="@style/baseButton"
             android:text="@string/octal"
+            android:onClick="changeBase"
+            android:tag="oct"
             tools:ignore="RtlSymmetry" />
 
         <TextView
@@ -90,6 +97,8 @@
             android:id="@+id/binButton"
             style="@style/baseButton"
             android:text="@string/binary"
+            android:onClick="changeBase"
+            android:tag="bin"
             tools:ignore="RtlSymmetry" />
 
         <TextView
