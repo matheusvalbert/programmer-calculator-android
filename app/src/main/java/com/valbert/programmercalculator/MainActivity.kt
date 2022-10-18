@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun changeBase(view: View) {
-
         calculator.inactivateBase(this)
         calculator.activateBase(view)
     }
