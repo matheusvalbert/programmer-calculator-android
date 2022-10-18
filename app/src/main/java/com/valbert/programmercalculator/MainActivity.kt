@@ -17,27 +17,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun changeBase(view: View) {
-        when(calculator.base) {
-            "hex" -> {
-                val button: Button = findViewById(R.id.hexButton)
-                button.setBackgroundResource(0)
-            }
-            "dec" -> {
-                val button: Button = findViewById(R.id.decButton)
-                button.setBackgroundResource(0)
-            }
-            "oct" -> {
-                val button: Button = findViewById(R.id.octButton)
-                button.setBackgroundResource(0)
-            }
-            "bin" -> {
-                val button: Button = findViewById(R.id.binButton)
-                button.setBackgroundResource(0)
-            }
-        }
 
-        calculator.base = view.tag.toString()
-
-        view.setBackgroundResource(R.drawable.base_green)
+        calculator.inactivateBase(this)
+        calculator.activateBase(view)
     }
 }
