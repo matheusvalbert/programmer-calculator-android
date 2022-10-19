@@ -19,4 +19,16 @@ class MainActivity : AppCompatActivity() {
         calculator.inactivateBase(this)
         calculator.activateBase(view)
     }
+
+    fun controlButtonClick(view: View) {
+        println(view.tag.toString())
+    }
+
+    fun operationButtonClick(view: View) {
+        println(view.tag.toString())
+    }
+
+    fun valueButtonClick(view: View) {
+        println(view.tag.toString())
+    }
 }

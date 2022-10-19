@@ -116,24 +116,32 @@
             android:id="@+id/reset"
             style="@style/controlButton"
             android:text="@string/reset"
+            android:onClick="controlButtonClick"
+            android:tag="reset"
             tools:ignore="DuplicateSpeakableTextCheck,TextContrastCheck" />
 
         <Button
             android:id="@+id/openParentheses"
             style="@style/controlButton"
             android:text="@string/open_parentheses"
+            android:onClick="controlButtonClick"
+            android:tag="open_parentheses"
             tools:ignore="TextContrastCheck" />
 
         <Button
             android:id="@+id/closeParentheses"
             style="@style/controlButton"
             android:text="@string/close_parentheses"
+            android:onClick="controlButtonClick"
+            android:tag="close_parentheses"
             tools:ignore="TextContrastCheck" />
 
         <Button
             android:id="@+id/shiftLeft"
             style="@style/controlButton"
             android:text="@string/shift_left"
+            android:onClick="controlButtonClick"
+            android:tag="shift_left"
             tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
@@ -144,22 +152,30 @@
         <Button
             android:id="@+id/d"
             style="@style/valueButton"
-            android:text="@string/d" />
+            android:text="@string/d"
+            android:onClick="valueButtonClick"
+            android:tag="d" />
 
         <Button
             android:id="@+id/e"
             style="@style/valueButton"
-            android:text="@string/e" />
+            android:text="@string/e"
+            android:onClick="controlButtonClick"
+            android:tag="e" />
 
         <Button
             android:id="@+id/f"
             style="@style/valueButton"
-            android:text="@string/f" />
+            android:text="@string/f"
+            android:onClick="controlButtonClick"
+            android:tag="f" />
 
         <Button
             android:id="@+id/shiftRight"
             style="@style/controlButton"
             android:text="@string/shift_right"
+            android:onClick="controlButtonClick"
+            android:tag="shift_right"
             tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
@@ -170,22 +186,30 @@
         <Button
             android:id="@+id/a"
             style="@style/valueButton"
-            android:text="@string/a" />
+            android:text="@string/a"
+            android:onClick="controlButtonClick"
+            android:tag="a" />
 
         <Button
             android:id="@+id/b"
             style="@style/valueButton"
-            android:text="@string/b" />
+            android:text="@string/b"
+            android:onClick="controlButtonClick"
+            android:tag="b" />
 
         <Button
             android:id="@+id/c"
             style="@style/valueButton"
-            android:text="@string/c" />
+            android:text="@string/c"
+            android:onClick="controlButtonClick"
+            android:tag="c" />
 
         <Button
             android:id="@+id/divide"
             style="@style/operationButton"
             android:text="@string/divide"
+            android:onClick="operationButtonClick"
+            android:tag="divide"
             tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
@@ -196,22 +220,30 @@
         <Button
             android:id="@+id/seven"
             style="@style/valueButton"
-            android:text="@string/seven" />
+            android:text="@string/seven"
+            android:onClick="controlButtonClick"
+            android:tag="seven" />
 
         <Button
             android:id="@+id/eight"
             style="@style/valueButton"
-            android:text="@string/eight" />
+            android:text="@string/eight"
+            android:onClick="controlButtonClick"
+            android:tag="eight" />
 
         <Button
             android:id="@+id/nine"
             style="@style/valueButton"
-            android:text="@string/nine" />
+            android:text="@string/nine"
+            android:onClick="controlButtonClick"
+            android:tag="nine" />
 
         <Button
             android:id="@+id/times"
             style="@style/operationButton"
             android:text="@string/times"
+            android:onClick="operationButtonClick"
+            android:tag="times"
             tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
@@ -222,22 +254,30 @@
         <Button
             android:id="@+id/four"
             style="@style/valueButton"
-            android:text="@string/four" />
+            android:text="@string/four"
+            android:onClick="controlButtonClick"
+            android:tag="four" />
 
         <Button
             android:id="@+id/five"
             style="@style/valueButton"
-            android:text="@string/five" />
+            android:text="@string/five"
+            android:onClick="controlButtonClick"
+            android:tag="five" />
 
         <Button
             android:id="@+id/six"
             style="@style/valueButton"
-            android:text="@string/six" />
+            android:text="@string/six"
+            android:onClick="controlButtonClick"
+            android:tag="six" />
 
         <Button
             android:id="@+id/minus"
             style="@style/operationButton"
             android:text="@string/minus"
+            android:onClick="operationButtonClick"
+            android:tag="minus"
             tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
@@ -248,22 +288,30 @@
         <Button
             android:id="@+id/one"
             style="@style/valueButton"
-            android:text="@string/one" />
+            android:text="@string/one"
+            android:onClick="controlButtonClick"
+            android:tag="one" />
 
         <Button
             android:id="@+id/two"
             style="@style/valueButton"
-            android:text="@string/two" />
+            android:text="@string/two"
+            android:onClick="controlButtonClick"
+            android:tag="two" />
 
         <Button
             android:id="@+id/three"
             style="@style/valueButton"
-            android:text="@string/three" />
+            android:text="@string/three"
+            android:onClick="controlButtonClick"
+            android:tag="three" />
 
         <Button
             android:id="@+id/plus"
             style="@style/operationButton"
             android:text="@string/plus"
+            android:onClick="operationButtonClick"
+            android:tag="plus"
             tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
@@ -276,18 +324,24 @@
             style="@style/valueButton"
             android:layout_weight="2.075"
             android:text="@string/zero"
-            tools:ignore="InefficientWeight" />
+            tools:ignore="InefficientWeight"
+            android:onClick="controlButtonClick"
+            android:tag="zero" />
 
         <ImageButton
             android:id="@+id/button6"
             style="@style/valueButton"
             android:contentDescription="@string/delete"
-            app:srcCompat="@drawable/backspace" />
+            app:srcCompat="@drawable/backspace"
+            android:onClick="controlButtonClick"
+            android:tag="delete" />
 
         <Button
             android:id="@+id/equal"
             style="@style/operationButton"
             android:text="@string/equal"
+            android:onClick="operationButtonClick"
+            android:tag="equal"
             tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
