@@ -1,27 +1,53 @@
 package com.valbert.programmercalculator
 
-import android.view.View
-import android.widget.Button
+import android.content.res.Resources
+import javax.script.ScriptEngine
+import javax.script.ScriptEngineManager
 
-class Calculator {
-    private var base = "hex"
+open class Calculator {
+    var base = "hex"
+    private var displayExpression = "0"
+    private var displayResult = "0"
+    private var expression = ""
 
-    fun inactivateBase(activity: MainActivity) {
-        val buttonHex: Button = activity.findViewById(R.id.hexButton)
-        buttonHex.setBackgroundResource(0)
+    private var hexResult = "0"
+    private var decResult = "0"
+    private var octResult = "0"
+    private var binResult = "0"
 
-        val buttonDec: Button = activity.findViewById(R.id.decButton)
-        buttonDec.setBackgroundResource(0)
+    fun executeControlOperation(value: String) {
 
-        val buttonOct: Button = activity.findViewById(R.id.octButton)
-        buttonOct.setBackgroundResource(0)
-
-        val buttonBin: Button = activity.findViewById(R.id.binButton)
-        buttonBin.setBackgroundResource(0)
     }
 
-    fun activateBase(view: View) {
-        this.base = view.tag.toString()
-        view.setBackgroundResource(R.drawable.base_green)
+    fun concatOrExecuteOperation(operation: String): String {
+        if(operation == "equal") displayExpression = getResult()
+        else {
+            displayExpression += when(operation) {
+                "divide" -> "÷"
+                "times" -> "×"
+                "minus" -> "−"
+                "plus" -> "+"
+                else -> ""
+            }
+        }
+        return displayExpression
+    }
+
+    fun concatValue(value: String): String {
+        displayExpression += value
+        expression += when(base) {
+            "hex" -> "0x$value"
+            "dec" -> "0d$value"
+            "oct" -> "0o$value"
+            "bin" -> "0b$value"
+            else -> ""
+        }
+        return displayExpression
+    }
+
+    private fun getResult(): String {
+        val engine: ScriptEngine = ScriptEngineManager().getEngineByName("rhino")
+//        return engine.eval(expression).toString()
+        return "4"
     }
 }

@@ -9,5 +9,7 @@
         <item name="colorOnSecondary">@color/white</item>
         <item name="control_button">@color/gray</item>
         <item name="value_button">@color/white</item>
+        <item name="button_disabled">@color/disabled_button_light</item>
+        <item name="text_disabled">@color/disabled_text_light</item>
     </style>
 </resources>

@@ -18,7 +18,8 @@
             android:text="@string/expression"
             android:textSize="@dimen/primaryResult"
             android:background="@null"
-            android:inputType="none"
+            android:inputType="text"
+            android:maxLines="1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -160,14 +161,14 @@
             android:id="@+id/e"
             style="@style/valueButton"
             android:text="@string/e"
-            android:onClick="controlButtonClick"
+            android:onClick="valueButtonClick"
             android:tag="e" />
 
         <Button
             android:id="@+id/f"
             style="@style/valueButton"
             android:text="@string/f"
-            android:onClick="controlButtonClick"
+            android:onClick="valueButtonClick"
             android:tag="f" />
 
         <Button
@@ -187,21 +188,21 @@
             android:id="@+id/a"
             style="@style/valueButton"
             android:text="@string/a"
-            android:onClick="controlButtonClick"
+            android:onClick="valueButtonClick"
             android:tag="a" />
 
         <Button
             android:id="@+id/b"
             style="@style/valueButton"
             android:text="@string/b"
-            android:onClick="controlButtonClick"
+            android:onClick="valueButtonClick"
             android:tag="b" />
 
         <Button
             android:id="@+id/c"
             style="@style/valueButton"
             android:text="@string/c"
-            android:onClick="controlButtonClick"
+            android:onClick="valueButtonClick"
             android:tag="c" />
 
         <Button
@@ -221,22 +222,22 @@
             android:id="@+id/seven"
             style="@style/valueButton"
             android:text="@string/seven"
-            android:onClick="controlButtonClick"
-            android:tag="seven" />
+            android:onClick="valueButtonClick"
+            android:tag="7" />
 
         <Button
             android:id="@+id/eight"
             style="@style/valueButton"
             android:text="@string/eight"
-            android:onClick="controlButtonClick"
-            android:tag="eight" />
+            android:onClick="valueButtonClick"
+            android:tag="8" />
 
         <Button
             android:id="@+id/nine"
             style="@style/valueButton"
             android:text="@string/nine"
-            android:onClick="controlButtonClick"
-            android:tag="nine" />
+            android:onClick="valueButtonClick"
+            android:tag="9" />
 
         <Button
             android:id="@+id/times"
@@ -255,22 +256,22 @@
             android:id="@+id/four"
             style="@style/valueButton"
             android:text="@string/four"
-            android:onClick="controlButtonClick"
-            android:tag="four" />
+            android:onClick="valueButtonClick"
+            android:tag="4" />
 
         <Button
             android:id="@+id/five"
             style="@style/valueButton"
             android:text="@string/five"
-            android:onClick="controlButtonClick"
-            android:tag="five" />
+            android:onClick="valueButtonClick"
+            android:tag="5" />
 
         <Button
             android:id="@+id/six"
             style="@style/valueButton"
             android:text="@string/six"
-            android:onClick="controlButtonClick"
-            android:tag="six" />
+            android:onClick="valueButtonClick"
+            android:tag="6" />
 
         <Button
             android:id="@+id/minus"
@@ -289,22 +290,22 @@
             android:id="@+id/one"
             style="@style/valueButton"
             android:text="@string/one"
-            android:onClick="controlButtonClick"
-            android:tag="one" />
+            android:onClick="valueButtonClick"
+            android:tag="1" />
 
         <Button
             android:id="@+id/two"
             style="@style/valueButton"
             android:text="@string/two"
-            android:onClick="controlButtonClick"
-            android:tag="two" />
+            android:onClick="valueButtonClick"
+            android:tag="2" />
 
         <Button
             android:id="@+id/three"
             style="@style/valueButton"
             android:text="@string/three"
-            android:onClick="controlButtonClick"
-            android:tag="three" />
+            android:onClick="valueButtonClick"
+            android:tag="3" />
 
         <Button
             android:id="@+id/plus"
@@ -325,8 +326,8 @@
             android:layout_weight="2.075"
             android:text="@string/zero"
             tools:ignore="InefficientWeight"
-            android:onClick="controlButtonClick"
-            android:tag="zero" />
+            android:onClick="valueButtonClick"
+            android:tag="0" />
 
         <ImageButton
             android:id="@+id/button6"

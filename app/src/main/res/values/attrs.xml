@@ -2,4 +2,6 @@
 <resources>
     <attr name="control_button" format="reference|color" />
     <attr name="value_button" format="reference|color" />
+    <attr name="button_disabled" format="reference|color" />
+    <attr name="text_disabled" format="reference|color" />
 </resources>

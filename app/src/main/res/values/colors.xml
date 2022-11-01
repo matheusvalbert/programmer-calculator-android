@@ -8,4 +8,8 @@
     <color name="light_gray">#FFF1F2F3</color>
     <color name="light_dark">#FF2E2F38</color>
     <color name="dark_dark">#FF17171C</color>
+    <color name="disabled_button_light">#FFCCCCCC</color>
+    <color name="disabled_button_dark">#FF53535C</color>
+    <color name="disabled_text_light">#FF666666</color>
+    <color name="disabled_text_dark">#FF454545</color>
 </resources>

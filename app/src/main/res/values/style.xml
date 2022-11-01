@@ -21,7 +21,7 @@
     <style name="resultItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAlignment">textEnd</item>
+        <item name="android:textDirection">rtl</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
@@ -57,12 +57,12 @@
 
     <style name="controlButton" parent="button">
         <item name="android:background">@drawable/control_button</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/text_color</item>
     </style>
 
     <style name="valueButton" parent="button">
         <item name="android:background">@drawable/value_button</item>
-        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textColor">@color/text_color</item>
     </style>
 
     <style name="operationButton" parent="button">
