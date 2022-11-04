@@ -161,14 +161,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun controlButtonClick(view: View) {
-        calculator.executeControlOperation(view.tag.toString())
+//        calculator.executeControlOperation(view.tag.toString())
     }
 
     fun operationButtonClick(view: View) {
-        expression.setText(calculator.concatOrExecuteOperation(view.tag.toString()))
+//        expression.setText(calculator.concatOrExecuteOperation(view.tag.toString()))
     }
 
     fun valueButtonClick(view: View) {
-        expression.setText(calculator.concatValue(view.tag.toString()))
+//        expression.setText(calculator.concatValue(view.tag.toString()))
     }
 }
