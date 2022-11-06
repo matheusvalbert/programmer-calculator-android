@@ -161,14 +161,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun controlButtonClick(view: View) {
-//        calculator.executeControlOperation(view.tag.toString())
+        when(view.tag.toString()) {
+            "reset" -> calculator.reset()
+            "equal" -> ""
+            "delete" -> calculator.removeLast()
+            "open_parentheses" -> calculator.openParentheses()
+            "close_parentheses" -> calculator.closeParentheses()
+        }
+
+        expression.setText(calculator.displayExpression)
     }
 
     fun operationButtonClick(view: View) {
-//        expression.setText(calculator.concatOrExecuteOperation(view.tag.toString()))
+        calculator.concatOperation(view.tag.toString())
+        expression.setText(calculator.displayExpression)
     }
 
     fun valueButtonClick(view: View) {
-//        expression.setText(calculator.concatValue(view.tag.toString()))
+        calculator.concatValue(view.tag.toString())
+        expression.setText(calculator.displayExpression)
     }
 }

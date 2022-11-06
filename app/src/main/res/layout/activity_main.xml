@@ -18,7 +18,9 @@
             android:text="@string/expression"
             android:textSize="@dimen/primaryResult"
             android:background="@null"
-            android:inputType="text"
+            android:inputType="textNoSuggestions"
+            android:clickable="false"
+            android:focusable="false"
             android:maxLines="1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -210,7 +212,7 @@
             style="@style/operationButton"
             android:text="@string/divide"
             android:onClick="operationButtonClick"
-            android:tag="divide"
+            android:tag="@string/divide"
             tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
@@ -244,7 +246,7 @@
             style="@style/operationButton"
             android:text="@string/times"
             android:onClick="operationButtonClick"
-            android:tag="times"
+            android:tag="@string/times"
             tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
@@ -278,7 +280,7 @@
             style="@style/operationButton"
             android:text="@string/minus"
             android:onClick="operationButtonClick"
-            android:tag="minus"
+            android:tag="@string/minus"
             tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
@@ -312,7 +314,7 @@
             style="@style/operationButton"
             android:text="@string/plus"
             android:onClick="operationButtonClick"
-            android:tag="plus"
+            android:tag="@string/plus"
             tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
@@ -341,7 +343,7 @@
             android:id="@+id/equal"
             style="@style/operationButton"
             android:text="@string/equal"
-            android:onClick="operationButtonClick"
+            android:onClick="controlButtonClick"
             android:tag="equal"
             tools:ignore="TextContrastCheck" />
 
