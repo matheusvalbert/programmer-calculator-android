@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setUp()
         enableDisableButtons()
+        expression.showSoftInputOnFocus = false
+//        expression.setSelection(expression.length())
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
     }
 
@@ -170,15 +172,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         expression.setText(calculator.displayExpression)
+        expression.setSelection(expression.length())
     }
 
     fun operationButtonClick(view: View) {
         calculator.concatOperation(view.tag.toString())
         expression.setText(calculator.displayExpression)
+        expression.setSelection(expression.length())
     }
 
     fun valueButtonClick(view: View) {
         calculator.concatValue(view.tag.toString())
         expression.setText(calculator.displayExpression)
+        calculator.prepareToCalculate()
+        expression.setSelection(expression.length())
     }
 }

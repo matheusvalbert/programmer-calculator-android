@@ -1,6 +1,7 @@
 package com.valbert.programmercalculator
 
 import android.content.res.Resources
+import androidx.annotation.IntegerRes
 import javax.script.ScriptEngine
 import javax.script.ScriptEngineManager
 import kotlin.math.exp
@@ -22,20 +23,25 @@ open class Calculator {
     private val engine: ScriptEngine = ScriptEngineManager().getEngineByName("rhino")
 
     fun concatValue(value: String) {
-        when(displayExpression) {
-            "0" -> displayExpression = value
-            ")" -> displayExpression += "×$value"
-            else -> displayExpression += value
+        if (displayExpression == "0") {
+            displayExpression = value
+            return
         }
+
+        if(displayExpression.last() == ')')
+            displayExpression += '×'
+
+        displayExpression += value
     }
 
     fun concatOperation(value: String) {
         val last: Char = displayExpression.last()
 
-        if (displayExpression == "0" || last == '(')
+        if(displayExpression == "0")
             return
 
-        if (last == '÷' || last == '×' || last == '-' || last == '+')
+        println(last)
+        if(last == '÷' || last == '×' || last == '-' || last == '+')
             displayExpression = displayExpression.dropLast(1)
 
         displayExpression += value
@@ -94,12 +100,128 @@ open class Calculator {
     }
 
     fun closeParentheses() {
+        val last: Char = displayExpression.last()
 
-        if(closedParentheses >= openedParentheses || displayExpression.last() == '(') {
+        if(closedParentheses >= openedParentheses || last == '(' || last == '÷' || last == '×' || last == '-' || last == '+') {
             return
         }
 
         displayExpression += ")"
         closedParentheses++
+    }
+
+    fun fixParenthese() {
+
+        var newOpenedParentheses = openedParentheses
+        var newClosedParentheses = closedParentheses
+
+        if(newOpenedParentheses == 0)
+            return
+
+        var countOpenedParentheses = 0
+
+        for(i in 1..newOpenedParentheses) {
+            if(expression.last() == '(') {
+                expression = expression.dropLast(1)
+                countOpenedParentheses += 1
+            }
+        }
+
+        newOpenedParentheses -= countOpenedParentheses
+        val addCloseParentheses = newOpenedParentheses - newClosedParentheses
+
+        if(addCloseParentheses == 0)
+            return
+
+        for( i in 1..addCloseParentheses) {
+            expression += ")"
+            newClosedParentheses += 1
+        }
+    }
+
+    fun fixLastCharacter() {
+        val last: Char = displayExpression.last()
+
+        if(last == '÷' || last == '×' || last == '-' || last == '+')
+            expression = expression.dropLast(1)
+    }
+
+    fun substituteOperationSymbol() {
+        expression = expression.replace("÷", "/")
+        expression = expression.replace("×", "*")
+    }
+
+    fun checkIfHasEquation() {
+        if(expression.isEmpty())
+            expression = "0"
+    }
+
+    fun separeEquation(): List<String> {
+        val isNumberOrLetter: MutableList<Boolean> = arrayListOf()
+
+        for(char: Char in expression) {
+            if(char.isDigit() || char.isLetter())
+                isNumberOrLetter.add(true)
+            else
+                isNumberOrLetter.add(false)
+        }
+
+        val separatedEquation: MutableList<String> = arrayListOf()
+        var newString = ""
+
+        for(i: Int in 0 until isNumberOrLetter.count()) {
+            if(i != 0 && isNumberOrLetter[i-1] != isNumberOrLetter[i]) {
+                separatedEquation.add(newString)
+                newString = ""
+            }
+
+            newString += expression[i]
+        }
+        separatedEquation.add(newString)
+
+        return separatedEquation
+
+    }
+
+    fun changeBase(newEquation: List<String>) {
+        var finalEquation = ""
+
+        newEquation.forEach {
+            if(it[0].isDigit() || it[0].isLetter())
+                finalEquation += when(base) {
+                    "hex" -> it.toBigInteger(16)
+                    "dec" -> it
+                    "oct" -> it.toBigInteger(8)
+                    "bin" -> it.toBigInteger(2)
+                    else -> "0"
+                }
+            else
+                finalEquation += it
+        }
+
+        expression = finalEquation
+    }
+
+    fun prepareToCalculate() {
+
+        expression = displayExpression
+
+        fixParenthese()
+        fixLastCharacter()
+        substituteOperationSymbol()
+        checkIfHasEquation()
+
+        val newEquation = separeEquation()
+        changeBase(newEquation)
+
+        calc()
+    }
+
+    fun calc() {
+        decResult = engine.eval(expression).toString().split(".")[0]
+        hexResult = Integer.toHexString(decResult.toInt())
+        octResult = Integer.toOctalString(decResult.toInt())
+        binResult = Integer.toBinaryString(decResult.toInt())
+        println("$hexResult --- $decResult --- $octResult --- $binResult")
     }
 }
