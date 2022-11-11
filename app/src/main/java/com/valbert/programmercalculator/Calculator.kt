@@ -1,10 +1,7 @@
 package com.valbert.programmercalculator
 
-import android.content.res.Resources
-import androidx.annotation.IntegerRes
 import javax.script.ScriptEngine
 import javax.script.ScriptEngineManager
-import kotlin.math.exp
 
 open class Calculator {
     var base = "hex"
@@ -15,10 +12,10 @@ open class Calculator {
     private var openedParentheses: Int = 0
     private var closedParentheses: Int = 0
 
-    private var hexResult: String = "0"
-    private var decResult: String = "0"
-    private var octResult: String = "0"
-    private var binResult: String = "0"
+    var hexResult: String = "0"
+    var decResult: String = "0"
+    var octResult: String = "0"
+    var binResult: String = "0"
 
     private val engine: ScriptEngine = ScriptEngineManager().getEngineByName("rhino")
 
@@ -32,6 +29,7 @@ open class Calculator {
             displayExpression += '×'
 
         displayExpression += value
+        prepareToCalculate()
     }
 
     fun concatOperation(value: String) {
@@ -110,7 +108,7 @@ open class Calculator {
         closedParentheses++
     }
 
-    fun fixParenthese() {
+    private fun fixParenthese() {
 
         var newOpenedParentheses = openedParentheses
         var newClosedParentheses = closedParentheses
@@ -139,24 +137,24 @@ open class Calculator {
         }
     }
 
-    fun fixLastCharacter() {
+    private fun fixLastCharacter() {
         val last: Char = displayExpression.last()
 
         if(last == '÷' || last == '×' || last == '-' || last == '+')
             expression = expression.dropLast(1)
     }
 
-    fun substituteOperationSymbol() {
+    private fun substituteOperationSymbol() {
         expression = expression.replace("÷", "/")
         expression = expression.replace("×", "*")
     }
 
-    fun checkIfHasEquation() {
+    private fun checkIfHasEquation() {
         if(expression.isEmpty())
             expression = "0"
     }
 
-    fun separeEquation(): List<String> {
+    private fun separeEquation(): List<String> {
         val isNumberOrLetter: MutableList<Boolean> = arrayListOf()
 
         for(char: Char in expression) {
@@ -183,7 +181,7 @@ open class Calculator {
 
     }
 
-    fun changeBase(newEquation: List<String>) {
+    private fun changeBase(newEquation: List<String>) {
         var finalEquation = ""
 
         newEquation.forEach {
@@ -217,11 +215,22 @@ open class Calculator {
         calc()
     }
 
-    fun calc() {
+    private fun calc() {
         decResult = engine.eval(expression).toString().split(".")[0]
         hexResult = Integer.toHexString(decResult.toInt())
         octResult = Integer.toOctalString(decResult.toInt())
         binResult = Integer.toBinaryString(decResult.toInt())
-        println("$hexResult --- $decResult --- $octResult --- $binResult")
+    }
+
+    fun calculate() {
+        displayExpression = when(base) {
+            "hex" -> hexResult
+            "dec" -> decResult
+            "oct" -> octResult
+            "bin" -> binResult
+            else -> "0"
+        }
+
+        prepareToCalculate()
     }
 }

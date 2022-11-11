@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +33,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonE: Button
     private lateinit var buttonF: Button
     private lateinit var expression: EditText
+    private lateinit var result: TextView
+    private lateinit var hexResult: TextView
+    private lateinit var decResult: TextView
+    private lateinit var octResult: TextView
+    private lateinit var binResult: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +71,11 @@ class MainActivity : AppCompatActivity() {
         buttonE = findViewById(R.id.e)
         buttonF = findViewById(R.id.f)
         expression = findViewById(R.id.primaryResult)
+        result = findViewById(R.id.secondaryResult)
+        hexResult = findViewById(R.id.hexResult)
+        decResult = findViewById(R.id.decResult)
+        octResult = findViewById(R.id.octResult)
+        binResult = findViewById(R.id.binResult)
     }
 
     private fun enableDisableButtons() {
@@ -144,6 +155,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setResult() {
+
+        result.text = when(calculator.base) {
+            "hex" -> calculator.hexResult
+            "dec" -> calculator.decResult
+            "oct" -> calculator.octResult
+            "bin" -> calculator.binResult
+            else -> "0"
+        }
+
+        hexResult.text = calculator.hexResult
+        decResult.text = calculator.decResult
+        octResult.text = calculator.octResult
+        binResult.text = calculator.binResult
+    }
+
     private fun inactivateBase() {
         buttonHex.setBackgroundResource(0)
         buttonDec.setBackgroundResource(0)
@@ -156,28 +183,56 @@ class MainActivity : AppCompatActivity() {
         view.setBackgroundResource(R.drawable.base_green)
     }
 
+    private fun changeResult() {
+        when(calculator.base) {
+            "hex" -> {
+                expression.setText(calculator.hexResult)
+                result.text = calculator.hexResult
+            }
+            "dec" -> {
+                expression.setText(calculator.decResult)
+                result.text = calculator.decResult
+            }
+            "oct" -> {
+                expression.setText(calculator.octResult)
+                result.text = calculator.octResult
+            }
+            "bin" -> {
+                expression.setText(calculator.binResult)
+                result.text = calculator.binResult
+            }
+        }
+    }
+
     fun changeBase(view: View) {
         inactivateBase()
         activateBase(view)
+        changeResult()
+        calculator.calculate()
         enableDisableButtons()
     }
 
     fun controlButtonClick(view: View) {
         when(view.tag.toString()) {
             "reset" -> calculator.reset()
-            "equal" -> ""
+            "equal" -> {
+                calculator.calculate()
+                expression.setText(calculator.displayExpression)
+            }
             "delete" -> calculator.removeLast()
             "open_parentheses" -> calculator.openParentheses()
             "close_parentheses" -> calculator.closeParentheses()
         }
 
         expression.setText(calculator.displayExpression)
+        setResult()
         expression.setSelection(expression.length())
     }
 
     fun operationButtonClick(view: View) {
         calculator.concatOperation(view.tag.toString())
         expression.setText(calculator.displayExpression)
+        setResult()
         expression.setSelection(expression.length())
     }
 
@@ -185,6 +240,7 @@ class MainActivity : AppCompatActivity() {
         calculator.concatValue(view.tag.toString())
         expression.setText(calculator.displayExpression)
         calculator.prepareToCalculate()
+        setResult()
         expression.setSelection(expression.length())
     }
 }
