@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="resultLayout">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginHorizontal">@dimen/padding</item>
-    </style>
-
     <style name="baseRow">
         <item name="android:layout_weight">0.6</item>
         <item name="android:layout_width">match_parent</item>

@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var buttonE: Button
     private lateinit var buttonF: Button
     private lateinit var expression: EditText
-    private lateinit var result: TextView
     private lateinit var hexResult: TextView
     private lateinit var decResult: TextView
     private lateinit var octResult: TextView
@@ -71,7 +70,6 @@ class MainActivity : AppCompatActivity() {
         buttonE = findViewById(R.id.e)
         buttonF = findViewById(R.id.f)
         expression = findViewById(R.id.primaryResult)
-        result = findViewById(R.id.secondaryResult)
         hexResult = findViewById(R.id.hexResult)
         decResult = findViewById(R.id.decResult)
         octResult = findViewById(R.id.octResult)
@@ -156,15 +154,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setResult() {
-
-        result.text = when(calculator.base) {
-            "hex" -> calculator.hexResult
-            "dec" -> calculator.decResult
-            "oct" -> calculator.octResult
-            "bin" -> calculator.binResult
-            else -> "0"
-        }
-
         hexResult.text = calculator.hexResult
         decResult.text = calculator.decResult
         octResult.text = calculator.octResult
@@ -184,24 +173,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun changeResult() {
-        when(calculator.base) {
-            "hex" -> {
-                expression.setText(calculator.hexResult)
-                result.text = calculator.hexResult
-            }
-            "dec" -> {
-                expression.setText(calculator.decResult)
-                result.text = calculator.decResult
-            }
-            "oct" -> {
-                expression.setText(calculator.octResult)
-                result.text = calculator.octResult
-            }
-            "bin" -> {
-                expression.setText(calculator.binResult)
-                result.text = calculator.binResult
-            }
-        }
+        expression.setText(when(calculator.base) {
+            "hex" -> calculator.hexResult
+            "dec" -> calculator.decResult
+            "oct" -> calculator.octResult
+            "bin" -> calculator.binResult
+            else -> "0"
+        })
     }
 
     fun changeBase(view: View) {
