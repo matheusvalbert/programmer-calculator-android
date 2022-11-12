@@ -17,3 +17,7 @@ Baixar o Android Studio, importar o projeto, selecionar o emulador e clicar em r
 ## Imagens do projeto
 
 <img src="https://github.com/matheusvalbert/programmer-calculator-android/blob/master/calculator_light.png" width="300"/> <img src="https://github.com/matheusvalbert/programmer-calculator-android/blob/master/calculator_dark.png" width="300"/>
+
+### Observação
+
+Código necessita de um refactor completo, NÃO utilizar
