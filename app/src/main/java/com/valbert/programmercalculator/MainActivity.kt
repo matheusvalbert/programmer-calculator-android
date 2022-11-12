@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         enableDisableButtons()
         expression.showSoftInputOnFocus = false
 //        expression.setSelection(expression.length())
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
     }
 
     private fun setUp() {

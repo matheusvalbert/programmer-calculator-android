@@ -1,5 +1,19 @@
 # Programmer Calculator Android
 
-Design calculadora programador em android, utilizando xml.
-Necessita realizar a parte lógica do código para que seja funcional
+## Sobre o projeto
 
+O projeto consiste em uma calculadora para programadores, na qual realiza cálculos de expressões inteiras e converte seu resultado, possibilitando entradas e saídas em hexadecimal, decimal, octal e binário realizando os cálculos em tempo real.
+
+O aplicativo é nativo para Android, com possibilidade de alteração de tema(Light e Dark mode).
+
+## Tecnologias:
+- Android SDK 32
+- Kotlin
+- XML UI Design
+
+## Como utilizar
+Baixar o Android Studio, importar o projeto, selecionar o emulador e clicar em run.
+
+## Imagens do projeto
+
+<img src="https://github.com/matheusvalbert/programmer-calculator-android/blob/main/calculator_light.png" width="300"/> <img src="https://github.com/matheusvalbert/programmer-calculator-android/blob/main/calculator_dark.png" width="300"/>
