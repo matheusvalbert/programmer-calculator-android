@@ -200,6 +200,16 @@ class MainActivity : AppCompatActivity() {
             "delete" -> calculator.removeLast()
             "open_parentheses" -> calculator.openParentheses()
             "close_parentheses" -> calculator.closeParentheses()
+            "shift_right" -> {
+                calculator.shiftRight()
+                expression.setText(calculator.displayExpression)
+                setResult()
+            }
+            "shift_left" -> {
+                calculator.shiftLeft()
+                expression.setText(calculator.displayExpression)
+                setResult()
+            }
         }
 
         expression.setText(calculator.displayExpression)

@@ -233,4 +233,23 @@ open class Calculator {
 
         prepareToCalculate()
     }
+
+    fun shiftShowResult() {
+        binResult = displayExpression
+        decResult = displayExpression.toLong(2).toString()
+        hexResult = Integer.toHexString(decResult.toInt())
+        octResult = Integer.toOctalString(decResult.toInt())
+    }
+
+    fun shiftRight() {
+        calculate()
+        displayExpression = displayExpression.dropLast(1)
+        shiftShowResult()
+    }
+
+    fun shiftLeft() {
+        calculate()
+        displayExpression += "0"
+        shiftShowResult()
+    }
 }
