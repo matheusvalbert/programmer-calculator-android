@@ -1,5 +1,3 @@
-import com.android.build.api.dsl.Packaging
-
 plugins {
   id("com.android.application")
   id("org.jetbrains.kotlin.android")
@@ -11,14 +9,14 @@ plugins {
 
 android {
   namespace = "com.matheusvalbert.programmercalculator"
-  compileSdk = 33
+  compileSdk = 34
 
   defaultConfig {
     applicationId = "com.matheusvalbert.programmercalculator"
     minSdk = 28
-    targetSdk = 33
-    versionCode = 1
-    versionName = "1.0"
+    targetSdk = 34
+    versionCode = 3
+    versionName = "1.1.0"
 
     multiDexEnabled = true
 
@@ -70,7 +68,7 @@ android {
 dependencies {
 
   implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
-  implementation("androidx.core:core-ktx:1.8.10")
+  implementation("androidx.core:core-ktx:1.10.1")
   implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
   implementation("androidx.activity:activity-compose:1.7.2")
   implementation(platform("androidx.compose:compose-bom:2023.03.00"))
@@ -83,7 +81,7 @@ dependencies {
   kapt("com.google.dagger:hilt-android-compiler:2.44.2")
   implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
   kapt("androidx.hilt:hilt-compiler:1.0.0")
-  implementation("org.springframework:spring-expression:5.3.29")
+  implementation("org.springframework:spring-expression:6.0.11")
   implementation("com.google.firebase:firebase-analytics-ktx")
   implementation("com.google.firebase:firebase-crashlytics-ktx")
   testImplementation("junit:junit:4.13.2")

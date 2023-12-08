@@ -8,19 +8,13 @@ import com.matheusvalbert.programmercalculator.core.event.BaseEvent
 import com.matheusvalbert.programmercalculator.core.event.InputEvent
 import com.matheusvalbert.programmercalculator.core.usecase.CalculatorUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
 class CalculatorViewModel @Inject constructor(
   private val calculatorUseCases: CalculatorUseCases
 ) : ViewModel() {
-
-  private val _baseEventFlow = MutableSharedFlow<BaseEvent>()
-  val baseEventFlow = _baseEventFlow.asSharedFlow()
 
   private val _result = mutableStateOf(ResultSate())
   val result: State<ResultSate> = _result
@@ -33,48 +27,28 @@ class CalculatorViewModel @Inject constructor(
       is BaseEvent.Bin -> _result.value = result.value.copy(baseInput = BaseEvent.Bin)
     }
 
-    viewModelScope.launch {
-      _result.value = calculatorUseCases.copyResultForInput(result.value)
-    }
+    _result.value = calculatorUseCases.copyResultForInput(result.value)
   }
 
   fun onInputEvent(event: InputEvent) {
     when (event) {
-      is InputEvent.Digit -> viewModelScope.launch {
-        _result.value = calculatorUseCases.newDigitToExpression(result.value, event.digit)
-      }
+      is InputEvent.Digit -> _result.value = calculatorUseCases.newDigitToExpression(result.value, event.digit)
 
-      is InputEvent.Operation -> viewModelScope.launch {
-        _result.value = calculatorUseCases.newOperationToExpression(result.value, event.operation)
-      }
+      is InputEvent.Operation -> _result.value = calculatorUseCases.newOperationToExpression(result.value, event.operation)
 
-      is InputEvent.Clear -> viewModelScope.launch {
-        _result.value = calculatorUseCases.clearUseCase(result.value)
-      }
+      is InputEvent.Clear -> _result.value = calculatorUseCases.clearUseCase(result.value)
 
-      is InputEvent.OpenParentheses -> viewModelScope.launch {
-        _result.value = calculatorUseCases.openParentheses(result.value)
-      }
+      is InputEvent.OpenParentheses -> _result.value = calculatorUseCases.openParentheses(result.value)
 
-      is InputEvent.CloseParentheses -> viewModelScope.launch {
-        _result.value = calculatorUseCases.closeParentheses(result.value)
-      }
+      is InputEvent.CloseParentheses -> _result.value = calculatorUseCases.closeParentheses(result.value)
 
-      is InputEvent.Shl -> viewModelScope.launch {
-        _result.value = calculatorUseCases.shiftLeftUseCase(result.value)
-      }
+      is InputEvent.Shl -> _result.value = calculatorUseCases.shiftLeftUseCase(result.value)
 
-      is InputEvent.Shr -> viewModelScope.launch {
-        _result.value = calculatorUseCases.shiftRightUseCase(result.value)
-      }
+      is InputEvent.Shr -> _result.value = calculatorUseCases.shiftRightUseCase(result.value)
 
-      is InputEvent.Delete -> viewModelScope.launch {
-        _result.value = calculatorUseCases.deleteUseCase(result.value)
-      }
+      is InputEvent.Delete -> _result.value = calculatorUseCases.deleteUseCase(result.value)
 
-      is InputEvent.Equal -> viewModelScope.launch {
-        _result.value = calculatorUseCases.equalUseCase(result.value)
-      }
+      is InputEvent.Equal -> _result.value = calculatorUseCases.equalUseCase(result.value)
     }
 
     viewModelScope.launch {
