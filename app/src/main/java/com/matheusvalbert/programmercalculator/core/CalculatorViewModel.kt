@@ -55,4 +55,13 @@ class CalculatorViewModel @Inject constructor(
       _result.value = calculatorUseCases.generateResultsBeforeInput(result.value)
     }
   }
+
+  suspend fun shouldRequestReview(): Boolean {
+    if(calculatorUseCases.hasBeenRequestedUseCase()) {
+      return false
+    }
+    calculatorUseCases.updateNumberOfInteractionsUseCase()
+
+    return calculatorUseCases.shouldRequestReviewUseCase()
+  }
 }

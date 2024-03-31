@@ -11,5 +11,8 @@ data class CalculatorUseCases(
   val deleteUseCase: DeleteUseCase,
   val equalUseCase: EqualUseCase,
   val generateResultsBeforeInput: GenerateResultsBeforeInput,
-  val copyResultForInput: CopyResultForInput
+  val copyResultForInput: CopyResultForInput,
+  val hasBeenRequestedUseCase: HasBeenRequestedUseCase,
+  val updateNumberOfInteractionsUseCase: UpdateNumberOfInteractionsUseCase,
+  val shouldRequestReviewUseCase: ShouldRequestReviewUseCase
 )

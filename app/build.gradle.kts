@@ -15,8 +15,8 @@ android {
     applicationId = "com.matheusvalbert.programmercalculator"
     minSdk = 28
     targetSdk = 34
-    versionCode = 3
-    versionName = "1.1.0"
+    versionCode = 4
+    versionName = "1.1.1"
 
     multiDexEnabled = true
 
@@ -67,10 +67,10 @@ android {
 
 dependencies {
 
-  implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
-  implementation("androidx.core:core-ktx:1.10.1")
-  implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
-  implementation("androidx.activity:activity-compose:1.7.2")
+  implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+  implementation("androidx.core:core-ktx:1.12.0")
+  implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+  implementation("androidx.activity:activity-compose:1.8.2")
   implementation(platform("androidx.compose:compose-bom:2023.03.00"))
   implementation("androidx.compose.ui:ui")
   implementation("androidx.compose.ui:ui-graphics")
@@ -79,11 +79,13 @@ dependencies {
   implementation("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
   implementation("com.google.dagger:hilt-android:2.44.2")
   kapt("com.google.dagger:hilt-android-compiler:2.44.2")
-  implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
-  kapt("androidx.hilt:hilt-compiler:1.0.0")
+  implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+  kapt("androidx.hilt:hilt-compiler:1.2.0")
   implementation("org.springframework:spring-expression:6.0.11")
   implementation("com.google.firebase:firebase-analytics-ktx")
   implementation("com.google.firebase:firebase-crashlytics-ktx")
+  implementation("androidx.datastore:datastore-preferences-core:1.0.0")
+  implementation("com.google.android.play:review-ktx:2.0.1")
   testImplementation("junit:junit:4.13.2")
   androidTestImplementation("androidx.test.ext:junit:1.1.5")
   androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

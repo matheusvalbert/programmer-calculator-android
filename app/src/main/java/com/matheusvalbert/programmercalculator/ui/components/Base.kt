@@ -1,5 +1,6 @@
 package com.matheusvalbert.programmercalculator.ui.components
 
+import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -16,17 +17,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.matheusvalbert.programmercalculator.core.CalculatorViewModel
 import com.matheusvalbert.programmercalculator.core.event.BaseEvent
+import com.matheusvalbert.programmercalculator.core.util.RequestReviewUtil
 import com.matheusvalbert.programmercalculator.ui.theme.ProgrammerCalculatorTheme
 
 @Composable
@@ -38,6 +42,8 @@ fun Base(
   height: Int = (LocalConfiguration.current.screenHeightDp * 0.05).toInt(),
   calculatorViewModel: CalculatorViewModel = viewModel()
 ) {
+  val activity = LocalContext.current as Activity
+  val coroutineScope = rememberCoroutineScope()
 
   val textColor = MaterialTheme.colorScheme.primary
 
@@ -55,6 +61,7 @@ fun Base(
         else -> BaseEvent.Hex
       }
     )
+    RequestReviewUtil.requestReviewIfNeeded(activity, coroutineScope, calculatorViewModel)
   }) {
     Row(modifier = modifier
       .height(height.dp)
