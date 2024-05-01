@@ -86,7 +86,7 @@ fun Base(
           AutoResizedText(
             text = name,
             textColor = textColor,
-            style = MaterialTheme.typography.headlineLarge,
+            style = MaterialTheme.typography.bodyLarge,
             modifier = modifier
           )
         }
@@ -99,7 +99,7 @@ fun Base(
           AutoResizedText(
             text = result,
             textColor = textColor,
-            style = MaterialTheme.typography.headlineLarge,
+            style = MaterialTheme.typography.bodyLarge,
           )
         }
       }

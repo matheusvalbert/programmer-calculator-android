@@ -15,8 +15,8 @@ android {
     applicationId = "com.matheusvalbert.programmercalculator"
     minSdk = 28
     targetSdk = 34
-    versionCode = 4
-    versionName = "1.1.1"
+    versionCode = 5
+    versionName = "1.1.3"
 
     multiDexEnabled = true
 
@@ -67,11 +67,11 @@ android {
 
 dependencies {
 
-  implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
-  implementation("androidx.core:core-ktx:1.12.0")
+  implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+  implementation("androidx.core:core-ktx:1.13.1")
   implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-  implementation("androidx.activity:activity-compose:1.8.2")
-  implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+  implementation("androidx.activity:activity-compose:1.9.0")
+  implementation(platform("androidx.compose:compose-bom:2024.05.00"))
   implementation("androidx.compose.ui:ui")
   implementation("androidx.compose.ui:ui-graphics")
   implementation("androidx.compose.ui:ui-tooling-preview")
@@ -84,12 +84,12 @@ dependencies {
   implementation("org.springframework:spring-expression:6.0.11")
   implementation("com.google.firebase:firebase-analytics-ktx")
   implementation("com.google.firebase:firebase-crashlytics-ktx")
-  implementation("androidx.datastore:datastore-preferences-core:1.0.0")
+  implementation("androidx.datastore:datastore-preferences-core:1.1.1")
   implementation("com.google.android.play:review-ktx:2.0.1")
   testImplementation("junit:junit:4.13.2")
   androidTestImplementation("androidx.test.ext:junit:1.1.5")
   androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-  androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
+  androidTestImplementation(platform("androidx.compose:compose-bom:2024.05.00"))
   androidTestImplementation("androidx.compose.ui:ui-test-junit4")
   debugImplementation("androidx.compose.ui:ui-tooling")
   debugImplementation("androidx.compose.ui:ui-test-manifest")
