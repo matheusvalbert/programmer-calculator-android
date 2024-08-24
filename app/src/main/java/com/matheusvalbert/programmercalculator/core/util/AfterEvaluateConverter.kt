@@ -19,7 +19,7 @@ private fun String.removeOpenParenthesesInTheEnd(): String {
 }
 
 private fun String.addCloseParentheses(): String {
-  val numberOfMissingCloseParentheses = numberOfOpenParentheses() - numberOfCloseParentheses()
+  val numberOfMissingCloseParentheses = numberOfOpenParentheses(this.length) - numberOfCloseParentheses()
   return this + ")".repeat(numberOfMissingCloseParentheses)
 }
 

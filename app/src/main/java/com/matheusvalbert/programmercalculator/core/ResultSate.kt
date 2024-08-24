@@ -7,6 +7,8 @@ data class ResultSate(
   val dec: String = "0",
   val oct: String = "0",
   val bin: String = "0",
-  val input: String = "0",
-  val baseInput: BaseEvent = BaseEvent.Hex
+  val input: String = "",
+  val inputPosition: Int = input.length,
+  val cursorPosition: Int = input.length,
+  val baseInput: BaseEvent = BaseEvent.Hex,
 )

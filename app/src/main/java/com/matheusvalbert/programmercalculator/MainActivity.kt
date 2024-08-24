@@ -39,7 +39,10 @@ class MainActivity : ComponentActivity() {
           color = MaterialTheme.colorScheme.background
         ) {
           Column {
-            Result(result = calculatorViewModel.result.value.input)
+            Result(
+              result = calculatorViewModel.result.value.input,
+              cursorPositionAfterInsertion = calculatorViewModel.result.value.cursorPosition
+            )
             Base(
               name = "HEX",
               result = calculatorViewModel.result.value.hex,

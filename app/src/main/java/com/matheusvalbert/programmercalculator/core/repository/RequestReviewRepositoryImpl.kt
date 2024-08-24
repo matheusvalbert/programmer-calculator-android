@@ -1,6 +1,6 @@
 package com.matheusvalbert.programmercalculator.core.repository
 
-import com.matheusvalbert.programmercalculator.core.dataStore.DataStoreHelper
+import com.matheusvalbert.programmercalculator.core.datastore.DataStoreHelper
 import javax.inject.Inject
 
 class RequestReviewRepositoryImpl @Inject constructor(

@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
@@ -48,7 +48,7 @@ fun Base(
   val textColor = MaterialTheme.colorScheme.primary
 
   var boxHeight by remember {
-    mutableStateOf(0)
+    mutableIntStateOf(0)
   }
 
   Box(Modifier.clickable {

@@ -28,6 +28,8 @@ class CalculatorViewModel @Inject constructor(
     }
 
     _result.value = calculatorUseCases.copyResultForInput(result.value)
+
+    _result.value = result.value.copy(cursorPosition = result.value.input.length)
   }
 
   fun onInputEvent(event: InputEvent) {
@@ -50,6 +52,18 @@ class CalculatorViewModel @Inject constructor(
 
       is InputEvent.Equal -> _result.value = calculatorUseCases.equalUseCase(result.value)
     }
+
+    viewModelScope.launch {
+      _result.value = calculatorUseCases.generateResultsBeforeInput(result.value)
+    }
+  }
+
+  fun onChangeInputEvent(position: Int) {
+    _result.value = result.value.copy(inputPosition = position)
+  }
+
+  fun onPasteInputEvent(input: String) {
+    _result.value = result.value.copy(input = input, cursorPosition = input.length)
 
     viewModelScope.launch {
       _result.value = calculatorUseCases.generateResultsBeforeInput(result.value)
