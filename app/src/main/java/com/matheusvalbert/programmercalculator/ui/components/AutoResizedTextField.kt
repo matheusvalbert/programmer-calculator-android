@@ -92,7 +92,7 @@ fun AutoResizedTextField(
       singleLine = true,
       modifier = modifier
         .drawWithContent {
-          if (lastText.text != text && text == "0") {
+          if (lastText.text != text && text.isBlank()) {
             resizedTextStyle = style
             shouldDraw = false
           }
