@@ -4,6 +4,9 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.crashlytics.setCustomKeys
+import com.google.firebase.ktx.Firebase
 import com.matheusvalbert.programmercalculator.core.event.BaseEvent
 import com.matheusvalbert.programmercalculator.core.event.InputEvent
 import com.matheusvalbert.programmercalculator.core.usecase.CalculatorUseCases
@@ -33,24 +36,34 @@ class CalculatorViewModel @Inject constructor(
   }
 
   fun onInputEvent(event: InputEvent) {
-    when (event) {
-      is InputEvent.Digit -> _result.value = calculatorUseCases.newDigitToExpression(result.value, event.digit)
+    try {
+      when (event) {
+        is InputEvent.Digit -> _result.value = calculatorUseCases.newDigitToExpression(result.value, event.digit)
 
-      is InputEvent.Operation -> _result.value = calculatorUseCases.newOperationToExpression(result.value, event.operation)
+        is InputEvent.Operation -> _result.value = calculatorUseCases.newOperationToExpression(result.value, event.operation)
 
-      is InputEvent.Clear -> _result.value = calculatorUseCases.clearUseCase(result.value)
+        is InputEvent.Clear -> _result.value = calculatorUseCases.clearUseCase(result.value)
 
-      is InputEvent.OpenParentheses -> _result.value = calculatorUseCases.openParentheses(result.value)
+        is InputEvent.OpenParentheses -> _result.value = calculatorUseCases.openParentheses(result.value)
 
-      is InputEvent.CloseParentheses -> _result.value = calculatorUseCases.closeParentheses(result.value)
+        is InputEvent.CloseParentheses -> _result.value = calculatorUseCases.closeParentheses(result.value)
 
-      is InputEvent.Shl -> _result.value = calculatorUseCases.shiftLeftUseCase(result.value)
+        is InputEvent.Shl -> _result.value = calculatorUseCases.shiftLeftUseCase(result.value)
 
-      is InputEvent.Shr -> _result.value = calculatorUseCases.shiftRightUseCase(result.value)
+        is InputEvent.Shr -> _result.value = calculatorUseCases.shiftRightUseCase(result.value)
 
-      is InputEvent.Delete -> _result.value = calculatorUseCases.deleteUseCase(result.value)
+        is InputEvent.Delete -> _result.value = calculatorUseCases.deleteUseCase(result.value)
 
-      is InputEvent.Equal -> _result.value = calculatorUseCases.equalUseCase(result.value)
+        is InputEvent.Equal -> _result.value = calculatorUseCases.equalUseCase(result.value)
+      }
+    } catch (e: Exception) {
+      Firebase.crashlytics.setCustomKeys {
+        key("input", result.value.input)
+        key("input_position", result.value.inputPosition)
+        key("cursor_position", result.value.cursorPosition)
+        key("base_input", result.value.baseInput.toString())
+      }
+      Firebase.crashlytics.recordException(e)
     }
 
     viewModelScope.launch {
