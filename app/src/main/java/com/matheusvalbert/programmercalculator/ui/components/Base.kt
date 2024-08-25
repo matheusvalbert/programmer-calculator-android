@@ -1,8 +1,9 @@
 package com.matheusvalbert.programmercalculator.ui.components
 
 import android.app.Activity
+import android.widget.Toast
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,9 +23,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.ClipboardManager
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -42,7 +47,9 @@ fun Base(
   height: Int = (LocalConfiguration.current.screenHeightDp * 0.05).toInt(),
   calculatorViewModel: CalculatorViewModel = viewModel()
 ) {
-  val activity = LocalContext.current as Activity
+  val context = LocalContext.current
+  val activity = context as Activity
+  val clipboardManager: ClipboardManager = LocalClipboardManager.current
   val coroutineScope = rememberCoroutineScope()
 
   val textColor = MaterialTheme.colorScheme.primary
@@ -51,17 +58,34 @@ fun Base(
     mutableIntStateOf(0)
   }
 
-  Box(Modifier.clickable {
-    calculatorViewModel.onChangeBaseEvent(
-      when (name) {
-        "HEX" -> BaseEvent.Hex
-        "DEC" -> BaseEvent.Dec
-        "OCT" -> BaseEvent.Oct
-        "BIN" -> BaseEvent.Bin
-        else -> BaseEvent.Hex
-      }
+  fun copyResultToClipboard() {
+    val resultToClipboard = when (name) {
+      "HEX" -> calculatorViewModel.result.value.hex
+      "DEC" -> calculatorViewModel.result.value.dec
+      "OCT" -> calculatorViewModel.result.value.oct
+      "BIN" -> calculatorViewModel.result.value.bin
+      else -> calculatorViewModel.result.value.hex
+    }
+    clipboardManager.setText(AnnotatedString(resultToClipboard))
+    Toast.makeText(context, "$name result copied to clipboard.", Toast.LENGTH_SHORT).show()
+  }
+
+  Box(Modifier.pointerInput(Unit) {
+    detectTapGestures(
+      onTap = {
+        calculatorViewModel.onChangeBaseEvent(
+          when (name) {
+            "HEX" -> BaseEvent.Hex
+            "DEC" -> BaseEvent.Dec
+            "OCT" -> BaseEvent.Oct
+            "BIN" -> BaseEvent.Bin
+            else -> BaseEvent.Hex
+          }
+        )
+        RequestReviewUtil.requestReviewIfNeeded(activity, coroutineScope, calculatorViewModel)
+      },
+      onLongPress = { copyResultToClipboard() }
     )
-    RequestReviewUtil.requestReviewIfNeeded(activity, coroutineScope, calculatorViewModel)
   }) {
     Row(modifier = modifier
       .height(height.dp)
