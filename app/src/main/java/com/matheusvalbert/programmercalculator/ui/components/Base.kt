@@ -1,6 +1,7 @@
 package com.matheusvalbert.programmercalculator.ui.components
 
 import android.app.Activity
+import android.os.Build
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -67,7 +68,9 @@ fun Base(
       else -> calculatorViewModel.result.value.hex
     }
     clipboardManager.setText(AnnotatedString(resultToClipboard))
-    Toast.makeText(context, "$name result copied to clipboard.", Toast.LENGTH_SHORT).show()
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+      Toast.makeText(context, "$name result copied to clipboard.", Toast.LENGTH_SHORT).show()
+    }
   }
 
   Box(Modifier.pointerInput(Unit) {
@@ -88,18 +91,18 @@ fun Base(
     )
   }) {
     Row(modifier = modifier
-      .height(height.dp)
-      .onGloballyPositioned { boxHeight = it.size.height }) {
+        .height(height.dp)
+        .onGloballyPositioned { boxHeight = it.size.height }) {
       Spacer(
         modifier = modifier
-          .height(boxHeight.dp)
-          .width(8.dp)
-          .background(if (active) MaterialTheme.colorScheme.surfaceVariant else Color.Unspecified)
+            .height(boxHeight.dp)
+            .width(8.dp)
+            .background(if (active) MaterialTheme.colorScheme.surfaceVariant else Color.Unspecified)
       )
       Row(
         modifier = modifier
-          .fillMaxWidth()
-          .padding(4.dp), horizontalArrangement = Arrangement.SpaceBetween
+            .fillMaxWidth()
+            .padding(4.dp), horizontalArrangement = Arrangement.SpaceBetween
       ) {
         Column(
           verticalArrangement = Arrangement.Center,

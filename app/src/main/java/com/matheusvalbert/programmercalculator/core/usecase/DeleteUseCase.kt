@@ -6,14 +6,14 @@ import com.matheusvalbert.programmercalculator.core.util.dropValueAfterCursor
 class DeleteUseCase {
 
   operator fun invoke(state: ResultSate): ResultSate {
-    return if (state.cursorPosition == 0) {
+    return if (state.inputPosition == 0) {
       state
     } else if (state.input.isBlank() || state.input.count() == 1) {
       state.copy(input = "")
     } else {
       state.copy(
         input = state.input.dropValueAfterCursor(state.inputPosition),
-        cursorPosition = state.cursorPosition - 1
+        cursorPosition = state.inputPosition - 1
       )
     }
   }

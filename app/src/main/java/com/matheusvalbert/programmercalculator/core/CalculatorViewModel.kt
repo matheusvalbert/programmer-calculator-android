@@ -4,9 +4,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.crashlytics.ktx.crashlytics
-import com.google.firebase.crashlytics.setCustomKeys
-import com.google.firebase.ktx.Firebase
 import com.matheusvalbert.programmercalculator.core.event.BaseEvent
 import com.matheusvalbert.programmercalculator.core.event.InputEvent
 import com.matheusvalbert.programmercalculator.core.usecase.CalculatorUseCases
@@ -56,14 +53,8 @@ class CalculatorViewModel @Inject constructor(
 
         is InputEvent.Equal -> _result.value = calculatorUseCases.equalUseCase(result.value)
       }
-    } catch (e: Exception) {
-      Firebase.crashlytics.setCustomKeys {
-        key("input", result.value.input)
-        key("input_position", result.value.inputPosition)
-        key("cursor_position", result.value.cursorPosition)
-        key("base_input", result.value.baseInput.toString())
-      }
-      Firebase.crashlytics.recordException(e)
+    } catch (_: Exception) {
+
     }
 
     viewModelScope.launch {

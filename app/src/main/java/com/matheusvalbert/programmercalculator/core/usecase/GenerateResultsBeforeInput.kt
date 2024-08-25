@@ -23,7 +23,7 @@ class GenerateResultsBeforeInput {
         val bin = Integer.toBinaryString(result)
 
         state.copy(hex = hex, dec = dec, oct = oct, bin = bin)
-      } catch (e: Exception) {
+      } catch (_: Exception) {
         val error = "Overflow"
         state.copy(hex = error, dec = error, oct = error, bin = error)
       }
