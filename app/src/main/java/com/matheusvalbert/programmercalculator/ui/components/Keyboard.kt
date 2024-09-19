@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
@@ -20,7 +19,6 @@ import com.matheusvalbert.programmercalculator.core.util.RequestReviewUtil
 
 @Composable
 fun Keyboard(
-  modifier: Modifier = Modifier,
   calculatorViewModel: CalculatorViewModel = viewModel()
 ) {
   val activity = LocalContext.current as Activity

@@ -13,7 +13,7 @@ class ShiftRightUseCase {
     } else {
       state.copy(
         input = state.input.dropLast(1),
-        cursorPosition = state.inputPosition - 1
+        cursorPosition = state.input.length - 1
       )
     }
   }

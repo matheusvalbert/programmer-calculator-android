@@ -13,10 +13,10 @@ android {
 
   defaultConfig {
     applicationId = "com.matheusvalbert.programmercalculator"
-    minSdk = 28
+    minSdk = 21
     targetSdk = 34
-    versionCode = 9
-    versionName = "1.2.3"
+    versionCode = 10
+    versionName = "1.2.4"
 
     multiDexEnabled = true
 
@@ -68,8 +68,8 @@ android {
 dependencies {
   implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
   implementation("androidx.core:core-ktx:1.13.1")
-  implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
-  implementation("androidx.activity:activity-compose:1.9.1")
+  implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
+  implementation("androidx.activity:activity-compose:1.9.2")
   implementation(platform("androidx.compose:compose-bom:2024.08.00"))
   implementation("androidx.compose.ui:ui")
   implementation("androidx.compose.ui:ui-graphics")
@@ -78,7 +78,7 @@ dependencies {
   implementation("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
   implementation("com.google.dagger:hilt-android:2.44.2")
   kapt("com.google.dagger:hilt-android-compiler:2.44.2")
-  implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
+  implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
   kapt("androidx.hilt:hilt-compiler:1.2.0")
   implementation("org.springframework:spring-expression:6.0.11")
   implementation("com.google.firebase:firebase-analytics-ktx")

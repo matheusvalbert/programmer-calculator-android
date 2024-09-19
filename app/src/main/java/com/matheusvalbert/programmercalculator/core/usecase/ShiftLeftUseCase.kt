@@ -10,7 +10,7 @@ class ShiftLeftUseCase {
     } else {
       state.copy(
         input = state.input + "0",
-        cursorPosition = state.inputPosition + 1
+        cursorPosition = state.input.length + 1
       )
     }
   }
