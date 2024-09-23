@@ -25,6 +25,9 @@
 -keep class org.springframework.** { *; }
 -keep class com.matheusvalbert.programmercalculator.core.event.** { *; }
 -keep class com.matheusvalbert.programmercalculator.core.usecase.CalculatorUseCases
+-keep class com.google.android.play.core.review.** { *; }
+-keep class com.google.android.play.core.tasks.** { *; }
+-keep class com.google.android.play.core.common.PlayCoreDialogWrapperActivity
 -dontwarn io.**
 -dontwarn java.**
 -dontwarn javax.**
