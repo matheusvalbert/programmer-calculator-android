@@ -1,19 +1,14 @@
 package com.matheusvalbert.programmercalculator.core.usecase
 
-import com.matheusvalbert.programmercalculator.core.repository.RequestReviewRepository
+import com.matheusvalbert.programmercalculator.core.datastore.DataStoreHelper
 import javax.inject.Inject
 
 class ShouldRequestReviewUseCase @Inject constructor(
-  private val requestReviewRepository: RequestReviewRepository
+  private val dataStoreHelperImpl: DataStoreHelper
 ) {
   suspend operator fun invoke(): Boolean {
-    val numberOfInteractions = requestReviewRepository.getNumberOfInteractions()
+    val numberOfInteractions = dataStoreHelperImpl.getNumberOfInteractions()
 
-    if(numberOfInteractions == 15) {
-      requestReviewRepository.updateAlreadyRequested(true)
-      return true
-    }
-
-    return false
+    return numberOfInteractions == 15
   }
 }

@@ -1,29 +1,23 @@
 package com.matheusvalbert.programmercalculator.ui.components
 
-import android.app.Activity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.matheusvalbert.programmercalculator.core.CalculatorViewModel
 import com.matheusvalbert.programmercalculator.core.event.BaseEvent
 import com.matheusvalbert.programmercalculator.core.event.InputEvent
-import com.matheusvalbert.programmercalculator.core.util.RequestReviewUtil
 
 @Composable
 fun Keyboard(
+  shouldRequestReview: () -> Unit,
   calculatorViewModel: CalculatorViewModel = viewModel()
 ) {
-  val activity = LocalContext.current as Activity
-  val coroutineScope = rememberCoroutineScope()
-
   val height = ((LocalConfiguration.current.screenHeightDp / 7) * 0.63).toInt()
   val width = ((LocalConfiguration.current.screenWidthDp / 4) * 0.95).toInt()
   val functionButtonColor = MaterialTheme.colorScheme.secondary
@@ -39,7 +33,7 @@ fun Keyboard(
         backgroundColor = functionButtonColor,
         onClick = {
           calculatorViewModel.onInputEvent(InputEvent.Clear)
-          RequestReviewUtil.requestReviewIfNeeded(activity, coroutineScope, calculatorViewModel)
+          shouldRequestReview()
         })
       Button(
         symbol = "(",
@@ -168,8 +162,7 @@ fun Keyboard(
         width = width,
         backgroundColor = operationButtonColor,
         textColor = operationButtonTextColor,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Operation("-")) }
-      )
+        onClick = { calculatorViewModel.onInputEvent(InputEvent.Operation("-")) })
     }
     Row(horizontalArrangement = Arrangement.SpaceBetween) {
       Button(
@@ -195,8 +188,7 @@ fun Keyboard(
         width = width,
         backgroundColor = operationButtonColor,
         textColor = operationButtonTextColor,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Operation("+")) }
-      )
+        onClick = { calculatorViewModel.onInputEvent(InputEvent.Operation("+")) })
     }
     Row(horizontalArrangement = Arrangement.SpaceBetween) {
       Button(
@@ -217,9 +209,8 @@ fun Keyboard(
         textColor = operationButtonTextColor,
         onClick = {
           calculatorViewModel.onInputEvent(InputEvent.Equal)
-          RequestReviewUtil.requestReviewIfNeeded(activity, coroutineScope, calculatorViewModel)
-        }
-      )
+          shouldRequestReview()
+        })
     }
   }
 }
@@ -227,5 +218,5 @@ fun Keyboard(
 @Preview
 @Composable
 fun KeyboardPreview() {
-  Keyboard()
+  Keyboard(fun() {})
 }

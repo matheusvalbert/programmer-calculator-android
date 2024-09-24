@@ -1,16 +1,20 @@
 package com.matheusvalbert.programmercalculator.core.usecase
 
-import com.matheusvalbert.programmercalculator.core.repository.RequestReviewRepository
+import com.matheusvalbert.programmercalculator.core.datastore.DataStoreHelper
 import javax.inject.Inject
 
 class UpdateNumberOfInteractionsUseCase @Inject constructor(
-  private val requestReviewRepository: RequestReviewRepository
+  private val dataStoreHelperImpl: DataStoreHelper
 ) {
   suspend operator fun invoke() {
-    var numberOfInteractions = requestReviewRepository.getNumberOfInteractions()
+    var numberOfInteractions = dataStoreHelperImpl.getNumberOfInteractions()
 
     numberOfInteractions += 1
 
-    requestReviewRepository.updateNumberOfInteractions(numberOfInteractions)
+    if (numberOfInteractions == 50) {
+      numberOfInteractions = 0
+    }
+
+    dataStoreHelperImpl.setNumberOfInteractions(numberOfInteractions)
   }
 }

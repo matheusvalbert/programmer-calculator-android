@@ -75,9 +75,6 @@ class CalculatorViewModel @Inject constructor(
   }
 
   suspend fun shouldRequestReview(): Boolean {
-    if(calculatorUseCases.hasBeenRequestedUseCase()) {
-      return false
-    }
     calculatorUseCases.updateNumberOfInteractionsUseCase()
 
     return calculatorUseCases.shouldRequestReviewUseCase()

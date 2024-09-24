@@ -1,6 +1,5 @@
 package com.matheusvalbert.programmercalculator.ui.components
 
-import android.app.Activity
 import android.os.Build
 import android.widget.Toast
 import androidx.compose.foundation.background
@@ -19,7 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,7 +34,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.matheusvalbert.programmercalculator.core.CalculatorViewModel
 import com.matheusvalbert.programmercalculator.core.event.BaseEvent
-import com.matheusvalbert.programmercalculator.core.util.RequestReviewUtil
 import com.matheusvalbert.programmercalculator.ui.theme.ProgrammerCalculatorTheme
 
 @Composable
@@ -44,14 +41,13 @@ fun Base(
   name: String,
   result: String,
   active: Boolean,
+  shouldRequestReview: () -> Unit,
   modifier: Modifier = Modifier,
   height: Int = (LocalConfiguration.current.screenHeightDp * 0.05).toInt(),
   calculatorViewModel: CalculatorViewModel = viewModel()
 ) {
   val context = LocalContext.current
-  val activity = context as Activity
   val clipboardManager: ClipboardManager = LocalClipboardManager.current
-  val coroutineScope = rememberCoroutineScope()
 
   val textColor = MaterialTheme.colorScheme.primary
 
@@ -85,7 +81,7 @@ fun Base(
             else -> BaseEvent.Hex
           }
         )
-        RequestReviewUtil.requestReviewIfNeeded(activity, coroutineScope, calculatorViewModel)
+        shouldRequestReview()
       },
       onLongPress = { copyResultToClipboard() }
     )
@@ -138,6 +134,6 @@ fun Base(
 @Composable
 fun BasePreview() {
   ProgrammerCalculatorTheme {
-    Base(name = "HEX", result = "0", active = true)
+    Base(name = "HEX", result = "0", active = true, fun() {})
   }
 }

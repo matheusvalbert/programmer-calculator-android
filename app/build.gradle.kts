@@ -15,8 +15,8 @@ android {
     applicationId = "com.matheusvalbert.programmercalculator"
     minSdk = 21
     targetSdk = 34
-    versionCode = 11
-    versionName = "1.2.5"
+    versionCode = 12
+    versionName = "1.2.6"
 
     multiDexEnabled = true
 

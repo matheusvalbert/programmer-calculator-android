@@ -9,11 +9,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.lifecycleScope
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
 import com.matheusvalbert.programmercalculator.core.CalculatorViewModel
 import com.matheusvalbert.programmercalculator.core.event.BaseEvent
+import com.matheusvalbert.programmercalculator.core.util.RequestReviewUtil
 import com.matheusvalbert.programmercalculator.ui.components.Base
 import com.matheusvalbert.programmercalculator.ui.components.Keyboard
 import com.matheusvalbert.programmercalculator.ui.components.Result
@@ -46,27 +48,35 @@ class MainActivity : ComponentActivity() {
             Base(
               name = "HEX",
               result = calculatorViewModel.result.value.hex,
-              active = calculatorViewModel.result.value.baseInput == BaseEvent.Hex
+              active = calculatorViewModel.result.value.baseInput == BaseEvent.Hex,
+              shouldRequestReview = { requestReview() }
             )
             Base(
               name = "DEC",
               result = calculatorViewModel.result.value.dec,
-              active = calculatorViewModel.result.value.baseInput == BaseEvent.Dec
+              active = calculatorViewModel.result.value.baseInput == BaseEvent.Dec,
+              shouldRequestReview = { requestReview() }
             )
             Base(
               name = "OCT",
               result = calculatorViewModel.result.value.oct,
-              active = calculatorViewModel.result.value.baseInput == BaseEvent.Oct
+              active = calculatorViewModel.result.value.baseInput == BaseEvent.Oct,
+              shouldRequestReview = { requestReview() }
             )
             Base(
               name = "BIN",
               result = calculatorViewModel.result.value.bin,
-              active = calculatorViewModel.result.value.baseInput == BaseEvent.Bin
+              active = calculatorViewModel.result.value.baseInput == BaseEvent.Bin,
+              shouldRequestReview = { requestReview() }
             )
-            Keyboard()
+            Keyboard({ requestReview() })
           }
         }
       }
     }
+  }
+
+  private fun requestReview() {
+    RequestReviewUtil.requestReviewIfNeeded(this, lifecycleScope, calculatorViewModel::shouldRequestReview)
   }
 }

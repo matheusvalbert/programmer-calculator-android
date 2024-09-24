@@ -1,7 +1,7 @@
 package com.matheusvalbert.programmercalculator.core.di
 
-import com.matheusvalbert.programmercalculator.core.repository.RequestReviewRepository
-import com.matheusvalbert.programmercalculator.core.repository.RequestReviewRepositoryImpl
+import com.matheusvalbert.programmercalculator.core.datastore.DataStoreHelper
+import com.matheusvalbert.programmercalculator.core.datastore.DataStoreHelperImpl
 import com.matheusvalbert.programmercalculator.core.usecase.CalculatorUseCases
 import com.matheusvalbert.programmercalculator.core.usecase.ClearUseCase
 import com.matheusvalbert.programmercalculator.core.usecase.CloseParentheses
@@ -9,7 +9,6 @@ import com.matheusvalbert.programmercalculator.core.usecase.CopyResultForInput
 import com.matheusvalbert.programmercalculator.core.usecase.DeleteUseCase
 import com.matheusvalbert.programmercalculator.core.usecase.EqualUseCase
 import com.matheusvalbert.programmercalculator.core.usecase.GenerateResultsBeforeInput
-import com.matheusvalbert.programmercalculator.core.usecase.HasBeenRequestedUseCase
 import com.matheusvalbert.programmercalculator.core.usecase.NewDigitToExpression
 import com.matheusvalbert.programmercalculator.core.usecase.NewOperationToExpression
 import com.matheusvalbert.programmercalculator.core.usecase.OpenParentheses
@@ -30,28 +29,22 @@ abstract class AppModule {
 
   @Singleton
   @Binds
-  abstract fun bindsRequestReviewRepository(requestReviewRepositoryImpl: RequestReviewRepositoryImpl): RequestReviewRepository
+  abstract fun bindsDataStoreHelper(dataStoreHelperImpl: DataStoreHelperImpl): DataStoreHelper
 
   companion object {
     @Singleton
     @Provides
-    fun bindsHasBeenRequestedUseCase(requestReviewRepository: RequestReviewRepository) =
-      HasBeenRequestedUseCase(requestReviewRepository)
+    fun providesShouldRequestReviewUseCase(dataStoreHelper: DataStoreHelper) =
+      ShouldRequestReviewUseCase(dataStoreHelper)
 
     @Singleton
     @Provides
-    fun bindsShouldRequestReviewUseCase(requestReviewRepository: RequestReviewRepository) =
-      ShouldRequestReviewUseCase(requestReviewRepository)
-
-    @Singleton
-    @Provides
-    fun bindsUpdateNumberOfInteractionsUseCase(requestReviewRepository: RequestReviewRepository) =
-      UpdateNumberOfInteractionsUseCase(requestReviewRepository)
+    fun providesUpdateNumberOfInteractionsUseCase(dataStoreHelper: DataStoreHelper) =
+      UpdateNumberOfInteractionsUseCase(dataStoreHelper)
 
     @Singleton
     @Provides
     fun providesCalculatorUseCases(
-      hasBeenRequestedUseCase: HasBeenRequestedUseCase,
       updateNumberOfInteractionsUseCase: UpdateNumberOfInteractionsUseCase,
       shouldRequestReviewUseCase: ShouldRequestReviewUseCase
     ) = CalculatorUseCases(
@@ -66,7 +59,6 @@ abstract class AppModule {
       equalUseCase = EqualUseCase(),
       generateResultsBeforeInput = GenerateResultsBeforeInput(),
       copyResultForInput = CopyResultForInput(),
-      hasBeenRequestedUseCase = hasBeenRequestedUseCase,
       updateNumberOfInteractionsUseCase = updateNumberOfInteractionsUseCase,
       shouldRequestReviewUseCase = shouldRequestReviewUseCase
     )
