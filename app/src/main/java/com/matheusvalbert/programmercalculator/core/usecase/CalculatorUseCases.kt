@@ -1,6 +1,8 @@
 package com.matheusvalbert.programmercalculator.core.usecase
 
 data class CalculatorUseCases(
+  val keyboardInput: KeyboardInput,
+  val changeInputPosition: ChangeInputPosition,
   val newDigitToExpression: NewDigitToExpression,
   val newOperationToExpression: NewOperationToExpression,
   val clearUseCase: ClearUseCase,

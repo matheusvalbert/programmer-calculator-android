@@ -10,10 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.matheusvalbert.programmercalculator.ui.theme.ProgrammerCalculatorTheme
 
 @Composable
 fun Button(
@@ -41,15 +38,5 @@ fun Button(
     enabled = enabled,
   ) {
     AutoResizedText(text = symbol, textColor = textColor)
-  }
-}
-
-@Preview
-@Composable
-fun OperationButtonPreview() {
-  val height = LocalConfiguration.current.screenHeightDp
-  val width = LocalConfiguration.current.screenWidthDp
-  ProgrammerCalculatorTheme {
-    Button(symbol = "X", height = height, width = width, onClick = {})
   }
 }

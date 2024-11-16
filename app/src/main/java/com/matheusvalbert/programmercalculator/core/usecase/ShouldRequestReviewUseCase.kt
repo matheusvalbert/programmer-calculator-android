@@ -6,6 +6,7 @@ import javax.inject.Inject
 class ShouldRequestReviewUseCase @Inject constructor(
   private val dataStoreHelperImpl: DataStoreHelper
 ) {
+
   suspend operator fun invoke(): Boolean {
     val numberOfInteractions = dataStoreHelperImpl.getNumberOfInteractions()
 

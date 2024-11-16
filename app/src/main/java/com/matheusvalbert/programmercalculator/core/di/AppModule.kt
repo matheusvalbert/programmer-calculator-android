@@ -3,12 +3,14 @@ package com.matheusvalbert.programmercalculator.core.di
 import com.matheusvalbert.programmercalculator.core.datastore.DataStoreHelper
 import com.matheusvalbert.programmercalculator.core.datastore.DataStoreHelperImpl
 import com.matheusvalbert.programmercalculator.core.usecase.CalculatorUseCases
+import com.matheusvalbert.programmercalculator.core.usecase.ChangeInputPosition
 import com.matheusvalbert.programmercalculator.core.usecase.ClearUseCase
 import com.matheusvalbert.programmercalculator.core.usecase.CloseParentheses
 import com.matheusvalbert.programmercalculator.core.usecase.CopyResultForInput
 import com.matheusvalbert.programmercalculator.core.usecase.DeleteUseCase
 import com.matheusvalbert.programmercalculator.core.usecase.EqualUseCase
 import com.matheusvalbert.programmercalculator.core.usecase.GenerateResultsBeforeInput
+import com.matheusvalbert.programmercalculator.core.usecase.KeyboardInput
 import com.matheusvalbert.programmercalculator.core.usecase.NewDigitToExpression
 import com.matheusvalbert.programmercalculator.core.usecase.NewOperationToExpression
 import com.matheusvalbert.programmercalculator.core.usecase.OpenParentheses
@@ -48,6 +50,8 @@ abstract class AppModule {
       updateNumberOfInteractionsUseCase: UpdateNumberOfInteractionsUseCase,
       shouldRequestReviewUseCase: ShouldRequestReviewUseCase
     ) = CalculatorUseCases(
+      keyboardInput = KeyboardInput(),
+      changeInputPosition = ChangeInputPosition(),
       newDigitToExpression = NewDigitToExpression(),
       newOperationToExpression = NewOperationToExpression(),
       clearUseCase = ClearUseCase(),

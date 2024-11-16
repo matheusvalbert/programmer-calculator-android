@@ -1,8 +1,8 @@
 package com.matheusvalbert.programmercalculator.core.event
 
 sealed class BaseEvent {
-  object Hex: BaseEvent()
-  object Dec: BaseEvent()
-  object Oct: BaseEvent()
-  object Bin: BaseEvent()
+  data object Hex: BaseEvent()
+  data object Dec: BaseEvent()
+  data object Oct: BaseEvent()
+  data object Bin: BaseEvent()
 }

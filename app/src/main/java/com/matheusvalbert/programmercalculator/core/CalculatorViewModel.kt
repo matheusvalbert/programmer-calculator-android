@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.matheusvalbert.programmercalculator.core.event.BaseEvent
 import com.matheusvalbert.programmercalculator.core.event.InputEvent
 import com.matheusvalbert.programmercalculator.core.usecase.CalculatorUseCases
+import com.matheusvalbert.programmercalculator.core.util.CrashlyticsUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,6 +19,7 @@ class CalculatorViewModel @Inject constructor(
 
   private val _result = mutableStateOf(ResultSate())
   val result: State<ResultSate> = _result
+  private var onInputChanged: (() -> Unit)? = null
 
   fun onChangeBaseEvent(event: BaseEvent) {
     when (event) {
@@ -35,6 +37,10 @@ class CalculatorViewModel @Inject constructor(
   fun onInputEvent(event: InputEvent) {
     try {
       when (event) {
+        is InputEvent.Keyboard -> _result.value = calculatorUseCases.keyboardInput(result.value, event.input)
+
+        is InputEvent.ChangeInputPosition -> _result.value = calculatorUseCases.changeInputPosition(result.value, event.inputPosition)
+
         is InputEvent.Digit -> _result.value = calculatorUseCases.newDigitToExpression(result.value, event.digit)
 
         is InputEvent.Operation -> _result.value = calculatorUseCases.newOperationToExpression(result.value, event.operation)
@@ -53,25 +59,20 @@ class CalculatorViewModel @Inject constructor(
 
         is InputEvent.Equal -> _result.value = calculatorUseCases.equalUseCase(result.value)
       }
-    } catch (_: Exception) {
 
-    }
+      onInputChanged?.let { it() }
 
-    viewModelScope.launch {
-      _result.value = calculatorUseCases.generateResultsBeforeInput(result.value)
+      viewModelScope.launch {
+        _result.value = calculatorUseCases.generateResultsBeforeInput(result.value)
+      }
+
+    } catch (e: Exception) {
+      CrashlyticsUtil.dumpResultState(result.value, e)
     }
   }
 
-  fun onChangeInputEvent(position: Int) {
-    _result.value = result.value.copy(inputPosition = position)
-  }
-
-  fun onPasteInputEvent(input: String) {
-    _result.value = result.value.copy(input = input, cursorPosition = input.length)
-
-    viewModelScope.launch {
-      _result.value = calculatorUseCases.generateResultsBeforeInput(result.value)
-    }
+  fun onInputChanged(callback: () -> Unit) {
+    onInputChanged = callback
   }
 
   suspend fun shouldRequestReview(): Boolean {

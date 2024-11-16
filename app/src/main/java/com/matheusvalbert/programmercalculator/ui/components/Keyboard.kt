@@ -7,7 +7,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.matheusvalbert.programmercalculator.core.CalculatorViewModel
 import com.matheusvalbert.programmercalculator.core.event.BaseEvent
@@ -213,10 +212,4 @@ fun Keyboard(
         })
     }
   }
-}
-
-@Preview
-@Composable
-fun KeyboardPreview() {
-  Keyboard(fun() {})
 }

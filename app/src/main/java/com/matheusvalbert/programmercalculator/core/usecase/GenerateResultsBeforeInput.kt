@@ -1,6 +1,7 @@
 package com.matheusvalbert.programmercalculator.core.usecase
 
 import com.matheusvalbert.programmercalculator.core.ResultSate
+import com.matheusvalbert.programmercalculator.core.util.CrashlyticsUtil
 import com.matheusvalbert.programmercalculator.core.util.afterEvaluateConverter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -23,7 +24,8 @@ class GenerateResultsBeforeInput {
         val bin = Integer.toBinaryString(result)
 
         state.copy(hex = hex, dec = dec, oct = oct, bin = bin)
-      } catch (_: Exception) {
+      } catch (e: Exception) {
+        CrashlyticsUtil.dumpResultState(state, e)
         val error = "Overflow"
         state.copy(hex = error, dec = error, oct = error, bin = error)
       }

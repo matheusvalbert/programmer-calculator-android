@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import com.matheusvalbert.programmercalculator.core.CalculatorViewModel
 import com.matheusvalbert.programmercalculator.core.event.BaseEvent
@@ -32,6 +33,7 @@ class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     firebaseAnalytics = Firebase.analytics
+    Firebase.crashlytics.isCrashlyticsCollectionEnabled = true
 
     setContent {
       ProgrammerCalculatorTheme {
@@ -41,10 +43,7 @@ class MainActivity : ComponentActivity() {
           color = MaterialTheme.colorScheme.background
         ) {
           Column {
-            Result(
-              result = calculatorViewModel.result.value.input,
-              cursorPositionAfterInsertion = calculatorViewModel.result.value.cursorPosition
-            )
+            Result()
             Base(
               name = "HEX",
               result = calculatorViewModel.result.value.hex,

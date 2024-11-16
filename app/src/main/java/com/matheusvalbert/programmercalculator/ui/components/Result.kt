@@ -11,14 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.matheusvalbert.programmercalculator.ui.theme.ProgrammerCalculatorTheme
 
 @Composable
 fun Result(
-  result: String,
-  cursorPositionAfterInsertion: Int,
   modifier: Modifier = Modifier,
   height: Int = (LocalConfiguration.current.screenHeightDp * 0.1).toInt(),
 ) {
@@ -35,18 +31,8 @@ fun Result(
       horizontalArrangement = Arrangement.End,
     ) {
       AutoResizedTextField(
-        text = result,
-        cursorPositionAfterInsertion = cursorPositionAfterInsertion,
         textColor = MaterialTheme.colorScheme.primary
       )
     }
-  }
-}
-
-@Preview
-@Composable
-fun ResultPreview() {
-  ProgrammerCalculatorTheme {
-    Result("50", 2)
   }
 }

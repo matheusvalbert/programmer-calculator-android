@@ -29,12 +29,10 @@ import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.matheusvalbert.programmercalculator.core.CalculatorViewModel
 import com.matheusvalbert.programmercalculator.core.event.BaseEvent
-import com.matheusvalbert.programmercalculator.ui.theme.ProgrammerCalculatorTheme
 
 @Composable
 fun Base(
@@ -127,13 +125,5 @@ fun Base(
         }
       }
     }
-  }
-}
-
-@Preview
-@Composable
-fun BasePreview() {
-  ProgrammerCalculatorTheme {
-    Base(name = "HEX", result = "0", active = true, fun() {})
   }
 }

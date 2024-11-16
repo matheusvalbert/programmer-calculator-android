@@ -6,6 +6,7 @@ import javax.inject.Inject
 class UpdateNumberOfInteractionsUseCase @Inject constructor(
   private val dataStoreHelperImpl: DataStoreHelper
 ) {
+
   suspend operator fun invoke() {
     var numberOfInteractions = dataStoreHelperImpl.getNumberOfInteractions()
 
