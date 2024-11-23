@@ -16,8 +16,8 @@ android {
     applicationId = "com.matheusvalbert.programmercalculator"
     minSdk = 21
     targetSdk = 35
-    versionCode = 13
-    versionName = "1.3.0"
+    versionCode = 14
+    versionName = "1.3.1"
 
     packaging {
       resources.excludes.add("META-INF/license.txt")

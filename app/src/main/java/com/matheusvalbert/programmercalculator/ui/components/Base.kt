@@ -32,7 +32,8 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.matheusvalbert.programmercalculator.core.CalculatorViewModel
-import com.matheusvalbert.programmercalculator.core.event.BaseEvent
+import com.matheusvalbert.programmercalculator.core.Base
+import com.matheusvalbert.programmercalculator.core.Event
 
 @Composable
 fun Base(
@@ -70,14 +71,16 @@ fun Base(
   Box(Modifier.pointerInput(Unit) {
     detectTapGestures(
       onTap = {
-        calculatorViewModel.onChangeBaseEvent(
-          when (name) {
-            "HEX" -> BaseEvent.Hex
-            "DEC" -> BaseEvent.Dec
-            "OCT" -> BaseEvent.Oct
-            "BIN" -> BaseEvent.Bin
-            else -> BaseEvent.Hex
-          }
+        calculatorViewModel.onEvent(
+          Event.ChangeBase(
+            when (name) {
+              "HEX" -> Base.Hex
+              "DEC" -> Base.Dec
+              "OCT" -> Base.Oct
+              "BIN" -> Base.Bin
+              else -> Base.Hex
+            }
+          )
         )
         shouldRequestReview()
       },

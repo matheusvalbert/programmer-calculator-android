@@ -1,7 +1,5 @@
 package com.matheusvalbert.programmercalculator.core
 
-import com.matheusvalbert.programmercalculator.core.event.BaseEvent
-
 data class ResultSate(
   val hex: String = "0",
   val dec: String = "0",
@@ -10,5 +8,5 @@ data class ResultSate(
   val input: String = "",
   val inputPosition: Int = input.length,
   val cursorPosition: Int = input.length,
-  val baseInput: BaseEvent = BaseEvent.Hex,
+  val base: Base = Base.Hex,
 )

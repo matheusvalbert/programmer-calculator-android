@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.isUnspecified
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.matheusvalbert.programmercalculator.core.CalculatorViewModel
-import com.matheusvalbert.programmercalculator.core.event.InputEvent
+import com.matheusvalbert.programmercalculator.core.Event
 
 @Composable
 fun AutoResizedTextField(
@@ -81,8 +81,8 @@ fun AutoResizedTextField(
       BasicTextField(
         value = text,
         onValueChange = {
-          calculatorViewModel.onInputEvent(InputEvent.Keyboard(it.text))
-          calculatorViewModel.onInputEvent(InputEvent.ChangeInputPosition(it.selection.start))
+          calculatorViewModel.onEvent(Event.Keyboard(it.text))
+          calculatorViewModel.onEvent(Event.ChangePosition(it.selection.start))
         },
         singleLine = true,
         modifier = modifier
@@ -94,7 +94,7 @@ fun AutoResizedTextField(
             }
             if (shouldDraw) {
               drawContent()
-              calculatorViewModel.onInputEvent(InputEvent.ChangeInputPosition(text.selection.start))
+              calculatorViewModel.onEvent(Event.ChangePosition(text.selection.start))
             }
           }
           .focusRequester(focusRequester),

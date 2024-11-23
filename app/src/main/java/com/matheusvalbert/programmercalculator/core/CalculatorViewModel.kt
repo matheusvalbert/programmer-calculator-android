@@ -4,8 +4,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.matheusvalbert.programmercalculator.core.event.BaseEvent
-import com.matheusvalbert.programmercalculator.core.event.InputEvent
 import com.matheusvalbert.programmercalculator.core.usecase.CalculatorUseCases
 import com.matheusvalbert.programmercalculator.core.util.CrashlyticsUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,43 +19,32 @@ class CalculatorViewModel @Inject constructor(
   val result: State<ResultSate> = _result
   private var onInputChanged: (() -> Unit)? = null
 
-  fun onChangeBaseEvent(event: BaseEvent) {
-    when (event) {
-      is BaseEvent.Hex -> _result.value = result.value.copy(baseInput = BaseEvent.Hex)
-      is BaseEvent.Dec -> _result.value = result.value.copy(baseInput = BaseEvent.Dec)
-      is BaseEvent.Oct -> _result.value = result.value.copy(baseInput = BaseEvent.Oct)
-      is BaseEvent.Bin -> _result.value = result.value.copy(baseInput = BaseEvent.Bin)
-    }
-
-    _result.value = calculatorUseCases.copyResultForInput(result.value)
-
-    _result.value = result.value.copy(cursorPosition = result.value.input.length)
-  }
-
-  fun onInputEvent(event: InputEvent) {
+  fun onEvent(event: Event) {
     try {
-      when (event) {
-        is InputEvent.Keyboard -> _result.value = calculatorUseCases.keyboardInput(result.value, event.input)
+      _result.value = when (event) {
+        is Event.ChangeBase -> calculatorUseCases.changeBaseEvent(result.value, event.base)
 
-        is InputEvent.ChangeInputPosition -> _result.value = calculatorUseCases.changeInputPosition(result.value, event.inputPosition)
+        is Event.Keyboard -> calculatorUseCases.keyboardInput(result.value, event.input)
 
-        is InputEvent.Digit -> _result.value = calculatorUseCases.newDigitToExpression(result.value, event.digit)
+        is Event.ChangePosition -> calculatorUseCases.changeInputPosition(result.value, event.inputPosition)
 
-        is InputEvent.Operation -> _result.value = calculatorUseCases.newOperationToExpression(result.value, event.operation)
+        is Event.Digit -> calculatorUseCases.newDigitToExpression(result.value, event.digit)
 
-        is InputEvent.Clear -> _result.value = calculatorUseCases.clearUseCase(result.value)
+        is Event.Operation -> calculatorUseCases.newOperationToExpression(result.value, event.operation)
 
-        is InputEvent.OpenParentheses -> _result.value = calculatorUseCases.openParentheses(result.value)
+        is Event.Clear -> calculatorUseCases.clearUseCase(result.value)
 
-        is InputEvent.CloseParentheses -> _result.value = calculatorUseCases.closeParentheses(result.value)
+        is Event.OpenParentheses -> calculatorUseCases.openParentheses(result.value)
 
-        is InputEvent.Shl -> _result.value = calculatorUseCases.shiftLeftUseCase(result.value)
+        is Event.CloseParentheses -> calculatorUseCases.closeParentheses(result.value)
 
-        is InputEvent.Shr -> _result.value = calculatorUseCases.shiftRightUseCase(result.value)
+        is Event.Shl -> calculatorUseCases.shiftLeftUseCase(result.value)
 
-        is InputEvent.Delete -> _result.value = calculatorUseCases.deleteUseCase(result.value)
+        is Event.Shr -> calculatorUseCases.shiftRightUseCase(result.value)
 
-        is InputEvent.Equal -> _result.value = calculatorUseCases.equalUseCase(result.value)
+        is Event.Delete -> calculatorUseCases.deleteUseCase(result.value)
+
+        is Event.Equal -> calculatorUseCases.equalUseCase(result.value)
       }
 
       onInputChanged?.let { it() }
@@ -65,9 +52,8 @@ class CalculatorViewModel @Inject constructor(
       viewModelScope.launch {
         _result.value = calculatorUseCases.generateResultsBeforeInput(result.value)
       }
-
     } catch (e: Exception) {
-      CrashlyticsUtil.dumpResultState(result.value, e)
+      CrashlyticsUtil.dumpResultState(result = result.value, event = event, exception = e)
     }
   }
 

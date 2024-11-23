@@ -15,7 +15,7 @@ import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import com.matheusvalbert.programmercalculator.core.CalculatorViewModel
-import com.matheusvalbert.programmercalculator.core.event.BaseEvent
+import com.matheusvalbert.programmercalculator.core.Base
 import com.matheusvalbert.programmercalculator.core.util.RequestReviewUtil
 import com.matheusvalbert.programmercalculator.ui.components.Base
 import com.matheusvalbert.programmercalculator.ui.components.Keyboard
@@ -47,25 +47,25 @@ class MainActivity : ComponentActivity() {
             Base(
               name = "HEX",
               result = calculatorViewModel.result.value.hex,
-              active = calculatorViewModel.result.value.baseInput == BaseEvent.Hex,
+              active = calculatorViewModel.result.value.base == Base.Hex,
               shouldRequestReview = { requestReview() }
             )
             Base(
               name = "DEC",
               result = calculatorViewModel.result.value.dec,
-              active = calculatorViewModel.result.value.baseInput == BaseEvent.Dec,
+              active = calculatorViewModel.result.value.base == Base.Dec,
               shouldRequestReview = { requestReview() }
             )
             Base(
               name = "OCT",
               result = calculatorViewModel.result.value.oct,
-              active = calculatorViewModel.result.value.baseInput == BaseEvent.Oct,
+              active = calculatorViewModel.result.value.base == Base.Oct,
               shouldRequestReview = { requestReview() }
             )
             Base(
               name = "BIN",
               result = calculatorViewModel.result.value.bin,
-              active = calculatorViewModel.result.value.baseInput == BaseEvent.Bin,
+              active = calculatorViewModel.result.value.base == Base.Bin,
               shouldRequestReview = { requestReview() }
             )
             Keyboard({ requestReview() })

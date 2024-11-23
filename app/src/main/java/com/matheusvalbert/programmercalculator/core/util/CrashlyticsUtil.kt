@@ -4,28 +4,29 @@ import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.crashlytics.setCustomKeys
 import com.google.firebase.ktx.Firebase
 import com.matheusvalbert.programmercalculator.core.ResultSate
+import com.matheusvalbert.programmercalculator.core.Base
+import com.matheusvalbert.programmercalculator.core.Event
 
 object CrashlyticsUtil {
-  private const val HEXADECIMAL = "hexadecimal"
-  private const val DECIMAL = "decimal"
-  private const val OCTAL = "octal"
-  private const val BINARY = "binary"
-  private const val INPUT = "input"
-  private const val INPUT_POSITION = "input_position"
-  private const val CURSOR_POSITION = "cursor_position"
-  private const val BASE_INPUT = "base_input"
+  private const val RESULT_STATE = "result_state"
+  private const val INPUT_EVENT = "input_event"
+  private const val BASE_EVENT = "base_event"
 
-  fun dumpResultState(result: ResultSate, exception: Exception) {
+  fun dumpResultState(
+    result: ResultSate,
+    event: Event? = null,
+    base: Base? = null,
+    exception: Exception
+  ) {
     val crashlytics = Firebase.crashlytics
     crashlytics.setCustomKeys {
-      key(HEXADECIMAL, result.hex)
-      key(DECIMAL, result.dec)
-      key(OCTAL, result.oct)
-      key(BINARY, result.bin)
-      key(INPUT, result.input)
-      key(INPUT_POSITION, result.inputPosition)
-      key(CURSOR_POSITION, result.cursorPosition)
-      key(BASE_INPUT, result.baseInput.javaClass.simpleName)
+      key(RESULT_STATE, result.toString())
+      if (event != null) {
+        key(INPUT_EVENT, event.toString())
+      }
+      if (base != null) {
+        key(BASE_EVENT, base.toString())
+      }
     }
     crashlytics.recordException(exception)
   }

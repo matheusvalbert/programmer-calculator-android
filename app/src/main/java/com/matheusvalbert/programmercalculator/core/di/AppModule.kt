@@ -3,10 +3,10 @@ package com.matheusvalbert.programmercalculator.core.di
 import com.matheusvalbert.programmercalculator.core.datastore.DataStoreHelper
 import com.matheusvalbert.programmercalculator.core.datastore.DataStoreHelperImpl
 import com.matheusvalbert.programmercalculator.core.usecase.CalculatorUseCases
+import com.matheusvalbert.programmercalculator.core.usecase.ChangeBaseEvent
 import com.matheusvalbert.programmercalculator.core.usecase.ChangeInputPosition
 import com.matheusvalbert.programmercalculator.core.usecase.ClearUseCase
 import com.matheusvalbert.programmercalculator.core.usecase.CloseParentheses
-import com.matheusvalbert.programmercalculator.core.usecase.CopyResultForInput
 import com.matheusvalbert.programmercalculator.core.usecase.DeleteUseCase
 import com.matheusvalbert.programmercalculator.core.usecase.EqualUseCase
 import com.matheusvalbert.programmercalculator.core.usecase.GenerateResultsBeforeInput
@@ -62,7 +62,7 @@ abstract class AppModule {
       deleteUseCase = DeleteUseCase(),
       equalUseCase = EqualUseCase(),
       generateResultsBeforeInput = GenerateResultsBeforeInput(),
-      copyResultForInput = CopyResultForInput(),
+      changeBaseEvent = ChangeBaseEvent(),
       updateNumberOfInteractionsUseCase = updateNumberOfInteractionsUseCase,
       shouldRequestReviewUseCase = shouldRequestReviewUseCase
     )

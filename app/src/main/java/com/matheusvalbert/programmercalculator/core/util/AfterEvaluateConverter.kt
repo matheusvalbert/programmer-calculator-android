@@ -1,8 +1,8 @@
 package com.matheusvalbert.programmercalculator.core.util
 
-import com.matheusvalbert.programmercalculator.core.event.BaseEvent
+import com.matheusvalbert.programmercalculator.core.Base
 
-fun String.afterEvaluateConverter(base: BaseEvent): String {
+fun String.afterEvaluateConverter(base: Base): String {
   return changeBase(
     removeOpenParenthesesInTheEnd().removeLastCharacterIfWasAnOperator().addCloseParentheses()
       .replaceOperatorCharacter().checkIfIsNotEmpty().splitExpression(), base
@@ -59,16 +59,16 @@ private fun String.splitExpression(): List<String> {
   return result
 }
 
-private fun changeBase(splitExpression: List<String>, base: BaseEvent): String {
+private fun changeBase(splitExpression: List<String>, base: Base): String {
   var finalEquation = ""
 
   splitExpression.forEach {
     if (it[0].isDigit() || it[0].isLetter())
       finalEquation += when (base) {
-        BaseEvent.Hex -> it.toBigInteger(16)
-        BaseEvent.Dec -> it
-        BaseEvent.Oct -> it.toBigInteger(8)
-        BaseEvent.Bin -> it.toBigInteger(2)
+        Base.Hex -> it.toBigInteger(16)
+        Base.Dec -> it
+        Base.Oct -> it.toBigInteger(8)
+        Base.Bin -> it.toBigInteger(2)
       }
     else
       finalEquation += it

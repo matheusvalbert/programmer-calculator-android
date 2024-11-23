@@ -9,13 +9,16 @@ import org.springframework.expression.ExpressionParser
 import org.springframework.expression.spel.standard.SpelExpressionParser
 
 class GenerateResultsBeforeInput {
+  companion object {
+    private const val ERROR = "Overflow"
+  }
 
   private val parser: ExpressionParser = SpelExpressionParser()
 
   suspend operator fun invoke(state: ResultSate): ResultSate {
     return withContext(Dispatchers.Default) {
       try {
-        val result = parser.parseExpression(state.input.afterEvaluateConverter(state.baseInput))
+        val result = parser.parseExpression(state.input.afterEvaluateConverter(state.base))
           .getValue(Int::class.java)!!
 
         val hex = Integer.toHexString(result).toString().uppercase()
@@ -25,9 +28,8 @@ class GenerateResultsBeforeInput {
 
         state.copy(hex = hex, dec = dec, oct = oct, bin = bin)
       } catch (e: Exception) {
-        CrashlyticsUtil.dumpResultState(state, e)
-        val error = "Overflow"
-        state.copy(hex = error, dec = error, oct = error, bin = error)
+        CrashlyticsUtil.dumpResultState(result = state, exception = e)
+        state.copy(hex = ERROR, dec = ERROR, oct = ERROR, bin = ERROR)
       }
     }
   }

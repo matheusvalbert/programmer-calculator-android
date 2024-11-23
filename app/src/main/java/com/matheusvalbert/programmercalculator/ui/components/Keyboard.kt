@@ -9,8 +9,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.matheusvalbert.programmercalculator.core.CalculatorViewModel
-import com.matheusvalbert.programmercalculator.core.event.BaseEvent
-import com.matheusvalbert.programmercalculator.core.event.InputEvent
+import com.matheusvalbert.programmercalculator.core.Base
+import com.matheusvalbert.programmercalculator.core.Event
 
 @Composable
 fun Keyboard(
@@ -31,7 +31,7 @@ fun Keyboard(
         width = width,
         backgroundColor = functionButtonColor,
         onClick = {
-          calculatorViewModel.onInputEvent(InputEvent.Clear)
+          calculatorViewModel.onEvent(Event.Clear)
           shouldRequestReview()
         })
       Button(
@@ -39,101 +39,101 @@ fun Keyboard(
         height = height,
         width = width,
         backgroundColor = functionButtonColor,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.OpenParentheses) })
+        onClick = { calculatorViewModel.onEvent(Event.OpenParentheses) })
       Button(
         symbol = ")",
         height = height,
         width = width,
         backgroundColor = functionButtonColor,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.CloseParentheses) })
+        onClick = { calculatorViewModel.onEvent(Event.CloseParentheses) })
       Button(
         symbol = "<<",
         height = height,
         width = width,
         backgroundColor = functionButtonColor,
-        enabled = calculatorViewModel.result.value.baseInput == BaseEvent.Bin,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Shl) })
+        enabled = calculatorViewModel.result.value.base == Base.Bin,
+        onClick = { calculatorViewModel.onEvent(Event.Shl) })
     }
     Row(horizontalArrangement = Arrangement.SpaceBetween) {
       Button(
         symbol = "D",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput == BaseEvent.Hex,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("D")) })
+        enabled = calculatorViewModel.result.value.base == Base.Hex,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("D")) })
       Button(
         symbol = "E",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput == BaseEvent.Hex,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("E")) })
+        enabled = calculatorViewModel.result.value.base == Base.Hex,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("E")) })
       Button(
         symbol = "F",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput == BaseEvent.Hex,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("F")) })
+        enabled = calculatorViewModel.result.value.base == Base.Hex,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("F")) })
       Button(
         symbol = ">>",
         height = height,
         width = width,
         backgroundColor = functionButtonColor,
-        enabled = calculatorViewModel.result.value.baseInput == BaseEvent.Bin,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Shr) })
+        enabled = calculatorViewModel.result.value.base == Base.Bin,
+        onClick = { calculatorViewModel.onEvent(Event.Shr) })
     }
     Row(horizontalArrangement = Arrangement.SpaceBetween) {
       Button(
         symbol = "A",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput == BaseEvent.Hex,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("A")) })
+        enabled = calculatorViewModel.result.value.base == Base.Hex,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("A")) })
       Button(
         symbol = "B",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput == BaseEvent.Hex,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("B")) })
+        enabled = calculatorViewModel.result.value.base == Base.Hex,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("B")) })
       Button(
         symbol = "C",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput == BaseEvent.Hex,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("C")) })
+        enabled = calculatorViewModel.result.value.base == Base.Hex,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("C")) })
       Button(
         symbol = "÷",
         height = height,
         width = width,
         backgroundColor = operationButtonColor,
         textColor = operationButtonTextColor,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Operation("÷")) })
+        onClick = { calculatorViewModel.onEvent(Event.Operation("÷")) })
     }
     Row(horizontalArrangement = Arrangement.SpaceBetween) {
       Button(
         symbol = "7",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput != BaseEvent.Bin,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("7")) })
+        enabled = calculatorViewModel.result.value.base != Base.Bin,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("7")) })
       Button(
         symbol = "8",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput == BaseEvent.Hex || calculatorViewModel.result.value.baseInput == BaseEvent.Dec,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("8")) })
+        enabled = calculatorViewModel.result.value.base == Base.Hex || calculatorViewModel.result.value.base == Base.Dec,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("8")) })
       Button(
         symbol = "9",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput == BaseEvent.Hex || calculatorViewModel.result.value.baseInput == BaseEvent.Dec,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("9")) })
+        enabled = calculatorViewModel.result.value.base == Base.Hex || calculatorViewModel.result.value.base == Base.Dec,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("9")) })
       Button(
         symbol = "×",
         height = height,
         width = width,
         backgroundColor = operationButtonColor,
         textColor = operationButtonTextColor,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Operation("×")) }
+        onClick = { calculatorViewModel.onEvent(Event.Operation("×")) }
       )
     }
     Row(horizontalArrangement = Arrangement.SpaceBetween) {
@@ -141,65 +141,65 @@ fun Keyboard(
         symbol = "4",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput != BaseEvent.Bin,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("4")) })
+        enabled = calculatorViewModel.result.value.base != Base.Bin,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("4")) })
       Button(
         symbol = "5",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput != BaseEvent.Bin,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("5")) })
+        enabled = calculatorViewModel.result.value.base != Base.Bin,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("5")) })
       Button(
         symbol = "6",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput != BaseEvent.Bin,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("6")) })
+        enabled = calculatorViewModel.result.value.base != Base.Bin,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("6")) })
       Button(
         symbol = "-",
         height = height,
         width = width,
         backgroundColor = operationButtonColor,
         textColor = operationButtonTextColor,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Operation("-")) })
+        onClick = { calculatorViewModel.onEvent(Event.Operation("-")) })
     }
     Row(horizontalArrangement = Arrangement.SpaceBetween) {
       Button(
         symbol = "1",
         height = height,
         width = width,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("1")) })
+        onClick = { calculatorViewModel.onEvent(Event.Digit("1")) })
       Button(
         symbol = "2",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput != BaseEvent.Bin,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("2")) })
+        enabled = calculatorViewModel.result.value.base != Base.Bin,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("2")) })
       Button(
         symbol = "3",
         height = height,
         width = width,
-        enabled = calculatorViewModel.result.value.baseInput != BaseEvent.Bin,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("3")) })
+        enabled = calculatorViewModel.result.value.base != Base.Bin,
+        onClick = { calculatorViewModel.onEvent(Event.Digit("3")) })
       Button(
         symbol = "+",
         height = height,
         width = width,
         backgroundColor = operationButtonColor,
         textColor = operationButtonTextColor,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Operation("+")) })
+        onClick = { calculatorViewModel.onEvent(Event.Operation("+")) })
     }
     Row(horizontalArrangement = Arrangement.SpaceBetween) {
       Button(
         symbol = "0",
         height = height,
         width = width * 2 + 8,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Digit("0")) })
+        onClick = { calculatorViewModel.onEvent(Event.Digit("0")) })
       Button(
         symbol = "⌫",
         height = height,
         width = width,
-        onClick = { calculatorViewModel.onInputEvent(InputEvent.Delete) })
+        onClick = { calculatorViewModel.onEvent(Event.Delete) })
       Button(
         symbol = "=",
         height = height,
@@ -207,7 +207,7 @@ fun Keyboard(
         backgroundColor = operationButtonColor,
         textColor = operationButtonTextColor,
         onClick = {
-          calculatorViewModel.onInputEvent(InputEvent.Equal)
+          calculatorViewModel.onEvent(Event.Equal)
           shouldRequestReview()
         })
     }
