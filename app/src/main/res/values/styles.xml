@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="button" parent="@style/Widget.AppCompat.Button.Borderless">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">50sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:layout_margin">@dimen/padding</item>
+        <item name="android:textColor">?attr/text</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="button.operation" parent="button">
+        <item name="android:background">@drawable/button_operation</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="button.control" parent="button">
+        <item name="android:background">@drawable/button_control</item>
+    </style>
+
+    <style name="button.header" parent="button">
+        <item name="android:background">@drawable/header_background</item>
+    </style>
+
+    <style name="base_result">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">@drawable/ripple</item>
+    </style>
+
+    <style name="base_result.title" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginStart">@dimen/triple_padding</item>
+        <item name="android:layout_marginEnd">@dimen/padding</item>
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">50sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:textColor">?attr/text</item>
+    </style>
+
+    <style name="base_result.title.history" parent="base_result.title">
+        <item name="android:layout_marginStart">@dimen/triple_padding</item>
+    </style>
+
+    <style name="base_result.value" parent="base_result.title">
+        <item name="android:gravity">center|end</item>
+    </style>
+
+    <style name="history_item">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">@drawable/ripple</item>
+    </style>
+
+    <style name="expression">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:gravity">center|end</item>
+        <item name="android:inputType">textNoSuggestions|textCapCharacters</item>
+        <item name="android:padding">@dimen/padding</item>
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">?attr/text</item>
+        <item name="android:textSize">@dimen/input_size</item>
+    </style>
+
+    <style name="header" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginStart">@dimen/triple_padding</item>
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">50sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:textColor">?attr/text</item>
+    </style>
+
+    <style name="history_expression" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center|end</item>
+        <item name="android:layout_marginHorizontal">@dimen/padding</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">?attr/text</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">@dimen/history_expression</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="history_expression.base" parent="history_expression">
+        <item name="android:gravity">center|start</item>
+        <item name="android:textSize">@dimen/history_result</item>
+        <item name="android:layout_marginStart">@dimen/padding</item>
+    </style>
+
+    <style name="history_expression.result" parent="history_expression">
+        <item name="android:layout_marginStart">@dimen/double_padding</item>
+        <item name="android:layout_marginEnd">@dimen/padding</item>
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:textSize">@dimen/history_result</item>
+    </style>
+
+</resources>

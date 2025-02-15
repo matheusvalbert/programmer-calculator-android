@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="radius">16dp</dimen>
+    <dimen name="padding">3dp</dimen>
+    <dimen name="double_padding">6dp</dimen>
+    <dimen name="triple_padding">9dp</dimen>
+    <dimen name="input_size">90sp</dimen>
+
+    <dimen name="history_expression">30sp</dimen>
+    <dimen name="history_result">20sp</dimen>
+</resources>

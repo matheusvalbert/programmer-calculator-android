@@ -19,22 +19,4 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
-
--keep class com.google.android.** { *; }
--keep class com.google.firebase.** { *; }
--keep class org.springframework.** { *; }
--keep class com.matheusvalbert.programmercalculator.core.event.** { *; }
--keep class com.matheusvalbert.programmercalculator.core.usecase.CalculatorUseCases
--keep class com.google.android.play.core.ktx.** { *; }
--keep class com.google.android.play.core.tasks.** { *; }
--keep class com.google.android.play.core.common.PlayCoreDialogWrapperActivity
--dontwarn io.**
--dontwarn java.**
--dontwarn javax.**
--dontwarn jdk.**
--dontwarn joptsimple.**
--dontwarn kotlin.**
--dontwarn org.**
--dontwarn reactor.**
--dontwarn rx.**
--dontwarn com.google.**
+-keep class com.matheusvalbert.programmercalculator.** { *; }

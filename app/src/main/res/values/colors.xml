@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="accent">#FF57D355</color>
+
+    <color name="dark_background">#FF17171C</color>
+    <color name="dark_button">#FF2E2F38</color>
+    <color name="dark_button_disabled">#FF53535C</color>
+    <color name="dark_button_control">#FF4E505F</color>
+    <color name="dark_text">@android:color/white</color>
+    <color name="dark_text_disabled">#FF454545</color>
+    <color name="dark_ripple">#33ffffff</color>
+
+    <color name="light_background">#FFF1F2F3</color>
+    <color name="light_button">#FFFFFFFF</color>
+    <color name="light_button_disabled">#FFCCCCCC</color>
+    <color name="light_button_control">#FFD2D3DA</color>
+    <color name="light_text">@android:color/black</color>
+    <color name="light_text_disabled">#FF666666</color>
+    <color name="light_ripple">#1f000000</color>
 </resources>

@@ -1,3 +1,48 @@
 <resources>
     <string name="app_name">Programmer Calculator</string>
+
+    <string name="reset">C</string>
+    <string name="open_parentheses">(</string>
+    <string name="close_parentheses">)</string>
+    <string name="shift_left">&lt;&lt;</string>
+    <string name="shift_right">&gt;&gt;</string>
+
+    <string name="divide">÷</string>
+    <string name="times">×</string>
+    <string name="minus">–</string>
+    <string name="plus">+</string>
+    <string name="equal">=</string>
+
+    <string name="a">A</string>
+    <string name="b">B</string>
+    <string name="c">C</string>
+    <string name="d">D</string>
+    <string name="e">E</string>
+    <string name="f">F</string>
+
+    <string name="zero">0</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+
+    <string name="delete">⌫</string>
+
+    <string name="expression">0</string>
+    <string name="result">0</string>
+
+    <string name="hexadecimal">HEX</string>
+    <string name="decimal">DEC</string>
+    <string name="octal">OCT</string>
+    <string name="binary">BIN</string>
+
+    <string name="history">History</string>
+    <string name="clear_history">Clear history</string>
+    <string name="copied_to_clipboard">copied to clipboard</string>
+
 </resources>

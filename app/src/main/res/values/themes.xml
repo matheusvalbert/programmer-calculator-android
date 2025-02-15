@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.ProgrammerCalculator" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.ProgrammerCalculator" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:windowBackground">@color/light_background</item>
+        <item name="android:statusBarColor">@color/light_background</item>
+        <item name="android:navigationBarColor">@color/light_background</item>
+        <item name="colorControlActivated">@color/accent</item>
+        <item name="android:textColorHighlight">@color/accent</item>
+        <item name="android:fontFamily">monospace</item>
+
+        <item name="button">@color/light_button</item>
+        <item name="buttonDisabled">@color/light_button_disabled</item>
+        <item name="buttonControl">@color/light_button_control</item>
+        <item name="text">@color/light_text</item>
+        <item name="textDisabled">@color/light_text_disabled</item>
+        <item name="ripple">@color/light_ripple</item>
+    </style>
 </resources>
