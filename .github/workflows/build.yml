@@ -1,13 +1,13 @@
 name: Build and run tests
 
 on:
-  release:
-    types:
-      - published
+  push:
+    branches:
+      - '*'
 
 jobs:
   test:
-    name: Unit Test
+    name: Build And Unit Test
     runs-on: ubuntu-latest
 
     steps:
