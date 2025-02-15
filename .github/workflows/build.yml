@@ -1,0 +1,30 @@
+name: Build and run tests
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup JDK 23
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: 23
+          cache: 'gradle'
+
+      - name: Setup Authorization with Firebase
+        run: echo '${{ secrets.FIREBASE_AUTH_JSON }}' > app/src/google-services.json
+
+      - name: Grant execute permissions for gradlew
+        run: chmod +x gradlew
+
+      - name: Run unit tests
+        run: ./gradlew clean build test

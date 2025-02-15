@@ -1,9 +1,9 @@
 name: Deploy To Google Play
 
 on:
-  release:
-    types:
-      - published
+  push:
+    branches:
+      - '*'
 
 jobs:
   test:
@@ -37,11 +37,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup JDK 17
+      - name: Setup JDK 23
         uses: actions/setup-java@v4
         with:
           distribution: 'oracle'
-          java-version: 17
+          java-version: 23
           cache: 'gradle'
 
       - name: Setup Authorization with Firebase
