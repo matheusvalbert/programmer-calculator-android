@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId 'com.matheusvalbert.programmercalculator'
-        minSdk 21
+        minSdk 26
         targetSdk 35
         versionCode 15
         versionName '2.0.0'
@@ -37,10 +37,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_23
         targetCompatibility JavaVersion.VERSION_23
-    }
-
-    lintOptions {
-        tasks.lint.enabled = false
     }
 }
 
