@@ -47,12 +47,12 @@ jobs:
       - name: Setup Authorization with Firebase
         run: echo '${{ secrets.FIREBASE_AUTH_JSON }}' > app/src/google-services.json
 
-      - name: Version Bump
-        uses: chkfung/android-version-actions@v1.2.3
-        with:
-          gradlePath: app/build.gradle.kts
-          versionCode: 16
-          versionName: 2.0.0
+#      - name: Version Bump
+#        uses: chkfung/android-version-actions@v1.2.3
+#        with:
+#          gradlePath: app/build.gradle
+#          versionCode: 16
+#          versionName: 2.0.0
 
       - name: Assemble Release Bundle
         run: ./gradlew bundleRelease
