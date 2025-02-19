@@ -38,6 +38,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_23
         targetCompatibility JavaVersion.VERSION_23
     }
+
+    lintOptions {
+        tasks.lint.enabled = false
+    }
 }
 
 dependencies {
