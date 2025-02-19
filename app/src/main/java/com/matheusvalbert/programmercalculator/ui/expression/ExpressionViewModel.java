@@ -14,6 +14,8 @@ import com.matheusvalbert.programmercalculator.ui.base.BaseViewModel;
 import com.matheusvalbert.programmercalculator.ui.history.mapper.HistoryMapper;
 import com.matheusvalbert.programmercalculator.ui.util.Selection;
 
+import java.math.BigInteger;
+
 public class ExpressionViewModel extends BaseViewModel {
     private final ExpressionUseCase mExpressionUseCase;
     private final EvaluatorUseCase mEvaluatorUseCase;
@@ -105,7 +107,7 @@ public class ExpressionViewModel extends BaseViewModel {
 
     private void evaluate(ExpressionState expressionState) {
         if (expressionState.getExpression().isEmpty()) return;
-        int result = mEvaluatorUseCase.invoke(expressionState.getExpression(), expressionState.getBase());
+        BigInteger result = mEvaluatorUseCase.invoke(expressionState.getExpression(), expressionState.getBase());
         expressionState.updateResult(result);
     }
 }

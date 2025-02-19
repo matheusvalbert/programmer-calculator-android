@@ -5,6 +5,8 @@ import static com.matheusvalbert.programmercalculator.ui.expression.state.Result
 import com.matheusvalbert.programmercalculator.core.util.Base;
 import com.matheusvalbert.programmercalculator.ui.base.State;
 
+import java.math.BigInteger;
+
 public class ExpressionState implements State {
     private @Base int mBase;
     private int mCursorPosition;
@@ -29,12 +31,10 @@ public class ExpressionState implements State {
     public void updateInput(int cursorPosition, String expression) {
         mCursorPosition = calculateNewCursorPosition(cursorPosition, expression);
         mExpression = expression;
-        System.out.println(expression);
-        System.out.println(mExpression);
-        if (expression.isEmpty()) updateResult(0);
+        if (expression.isEmpty()) updateResult(BigInteger.valueOf(0L));
     }
 
-    public void updateResult(int result) {
+    public void updateResult(BigInteger result) {
         mResultState.updateResult(result);
     }
 

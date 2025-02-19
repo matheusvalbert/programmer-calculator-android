@@ -1,12 +1,13 @@
 package com.matheusvalbert.programmercalculator.core.domain;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
 public class Evaluator implements Domain {
 
-    public int evaluate(List<String> tokens) {
+    public BigInteger evaluate(List<String> tokens) {
         List<String> postfixedTokens = infixToPostfix(tokens);
         return evaluatePostfix(postfixedTokens);
     }
@@ -40,7 +41,7 @@ public class Evaluator implements Domain {
         return output;
     }
 
-    private int getPrecedence(String op) {
+    private long getPrecedence(String op) {
         return switch (op) {
             case "+", "-" -> 1;
             case "*", "/" -> 2;
@@ -48,29 +49,29 @@ public class Evaluator implements Domain {
         };
     }
 
-    private int evaluatePostfix(List<String> postfix) {
-        Stack<Integer> stack = new Stack<>();
+    private BigInteger evaluatePostfix(List<String> postfix) {
+        Stack<BigInteger> stack = new Stack<>();
 
         for (String token : postfix) {
             if (Character.isDigit(token.charAt(0))) {
-                stack.push(Integer.parseInt(token));
+                stack.push(new BigInteger(token));
                 continue;
             }
-            int b = stack.pop();
-            int a = stack.pop();
-            int result = applyOperator(a, b, token);
+            BigInteger b = stack.pop();
+            BigInteger a = stack.pop();
+            BigInteger result = applyOperator(a, b, token);
             stack.push(result);
         }
 
         return stack.pop();
     }
 
-    private int applyOperator(int a, int b, String op) {
+    private BigInteger applyOperator(BigInteger a, BigInteger b, String op) {
         return switch (op) {
-            case "+" -> a + b;
-            case "-" -> a - b;
-            case "*" -> a * b;
-            case "/" -> a / b;
+            case "+" -> a.add(b);
+            case "-" -> a.subtract(b);
+            case "*" -> a.multiply(b);
+            case "/" -> a.divide(b);
             default -> throw new IllegalArgumentException("Unknown operator: " + op);
         };
     }

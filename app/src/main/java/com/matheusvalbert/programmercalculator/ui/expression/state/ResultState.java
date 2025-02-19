@@ -8,6 +8,8 @@ import static com.matheusvalbert.programmercalculator.ui.util.Constants.ERROR;
 
 import com.matheusvalbert.programmercalculator.core.util.Base;
 
+import java.math.BigInteger;
+
 public class ResultState {
     private String mHex = "0";
     private String mDec = "0";
@@ -18,11 +20,11 @@ public class ResultState {
         return new ResultState();
     }
 
-    public void updateResult(int result) {
-        mHex = Integer.toHexString(result).toUpperCase();
-        mDec = Integer.toString(result);
-        mOct = Integer.toOctalString(result);
-        mBin = Integer.toBinaryString(result);
+    public void updateResult(BigInteger result) {
+        mHex = result.toString(16).toUpperCase();
+        mDec = result.toString(10);
+        mOct = result.toString(8);
+        mBin = result.toString(2);
     }
 
     public boolean isError() {

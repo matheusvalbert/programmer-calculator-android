@@ -8,6 +8,7 @@ import static com.matheusvalbert.programmercalculator.core.util.Util.OPERATIONS;
 
 import com.matheusvalbert.programmercalculator.core.util.Base;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -119,12 +120,12 @@ public class Tokenizer implements Domain {
                 result.add(token);
                 continue;
             }
-            int convertedValue;
+            BigInteger convertedValue;
             switch (mBase) {
-                case HEX -> convertedValue = Integer.parseInt(token, 16);
-                case DEC -> convertedValue = Integer.parseInt(token, 10);
-                case OCT -> convertedValue = Integer.parseInt(token, 8);
-                case BIN -> convertedValue = Integer.parseInt(token, 2);
+                case HEX -> convertedValue = new BigInteger(token, 16);
+                case DEC -> convertedValue = new BigInteger(token, 10);
+                case OCT -> convertedValue = new BigInteger(token, 8);
+                case BIN -> convertedValue = new BigInteger(token, 2);
                 default -> throw new IllegalStateException("Invalid base conversion during format");
             }
             result.add(String.valueOf(convertedValue));

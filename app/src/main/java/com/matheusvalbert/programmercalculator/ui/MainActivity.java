@@ -14,6 +14,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
@@ -160,10 +161,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void copyToClipboard(@Base int base) {
+        TextView resultValue = switch (base) {
+            case Base.HEX -> mBinding.hexadecimalResultValue;
+            case Base.DEC -> mBinding.decimalResultValue;
+            case Base.OCT -> mBinding.octalResultValue;
+            case Base.BIN -> mBinding.binaryResultValue;
+            default -> throw new IllegalStateException("Invalid base");
+        };
+
         String copiedToClipboard = getString(R.string.copied_to_clipboard);
         String baseString = getString(Util.getBaseString(base));
         ClipData clipData = ClipData.newPlainText(baseString + Constants.SPACE +
-                copiedToClipboard, mBinding.hexadecimalResultValue.getText());
+                copiedToClipboard, resultValue.getText());
         mClipboard.setPrimaryClip(clipData);
     }
 
